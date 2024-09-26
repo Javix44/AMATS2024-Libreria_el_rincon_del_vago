@@ -8,7 +8,7 @@ require_once('model/categoria.php');
 require_once('model/compra.php');
 require_once('model/producto.php');
 require_once('model/proveedor.php');
-require_once('model/usuairo.php');
+require_once('model/usuario.php');
 require_once('model/venta.php');
 
 //controladores
