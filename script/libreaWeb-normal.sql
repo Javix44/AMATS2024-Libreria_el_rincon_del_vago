@@ -66,5 +66,7 @@ CREATE TABLE Venta (
     IdUsuario INT NOT NULL,
     Cantidad INT NOT NULL,
     FechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
-)
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
