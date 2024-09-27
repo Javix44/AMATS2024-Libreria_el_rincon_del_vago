@@ -33,7 +33,7 @@ class Pages {
             case "agregarusuario":
                 return "view/admin/form/agregarusuario.php";
             default:
-                return "e404.php";
+                return "view/e404.php";
         }
     }
 
@@ -42,11 +42,11 @@ class Pages {
     {
         switch ($url[0]) {
             case "":
-                return "View/cajero/inicio.php";
+                return "view/cajero/inicio.php";
             case "inicio":
-                return "View/cajero/inicio.php";
+                return "view/cajero/inicio.php";
             default:
-                return "View/e404.php"; 
+                return "view/e404.php"; 
         }
     }
 }
