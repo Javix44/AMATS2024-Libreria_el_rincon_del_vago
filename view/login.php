@@ -66,7 +66,7 @@ if (isset($_POST["ok"])) {
         }
 
         .login-container {
-            background-image: url('<?php echo URL ?>resources/img/fondologin1.jpg');
+            background-image: url('<?php echo URL; ?>resources/img/fondologin1.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
