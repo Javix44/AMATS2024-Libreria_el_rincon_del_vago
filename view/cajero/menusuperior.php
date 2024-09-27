@@ -16,8 +16,8 @@
         </ul>
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link btn btn-success create-new-button"  href="#">+ Agregar Productos</a>
-                 
+                <a class="nav-link btn btn-success create-new-button" href="#">+ Agregar Productos</a>
+
             </li>
             <li class="nav-item nav-settings d-none d-lg-block">
                 <a class="nav-link" href="#">
@@ -134,7 +134,7 @@
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
+                    <a href="cerrar.php" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-logout text-danger"></i>
