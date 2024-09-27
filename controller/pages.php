@@ -1,6 +1,7 @@
 <?php
 
-class Pages {
+class Pages
+{
 
     //la funcion principal para visualizar las paginas
     public function ViewPage()
@@ -32,6 +33,8 @@ class Pages {
                 return "view/admin/inicio.php";
             case "agregarusuario":
                 return "view/admin/form/agregarusuario.php";
+            case "listausuarios":
+                return "view/admin/consultas/listausuarios.php";
             default:
                 return "view/e404.php";
         }
@@ -46,9 +49,7 @@ class Pages {
             case "inicio":
                 return "view/cajero/inicio.php";
             default:
-                return "view/e404.php"; 
+                return "view/e404.php";
         }
     }
 }
-
-?>

@@ -31,6 +31,7 @@ class UsuarioController extends Connection
         }
         return $resultado;
     }
+
     public function encriptar($accion, $texto)
     {
         $output = false;
@@ -46,4 +47,60 @@ class UsuarioController extends Connection
         }
         return $salida;
     }
+
+    public function insertUsuario($usuario)
+    {
+        // Obtenemos los valores del objeto
+        $nombre = $usuario->getNombre();
+        $nombreUsu = $usuario->getNombreUsu();
+        $clave = $this->encriptar("encriptar", $usuario->getClave());
+        $correo = $usuario->getCorreo();
+        $esAdmin = $usuario->getEsAdmin(); // Booleano, 1 o 0
+        $mensaje = "";
+
+        // Verificar si el nombre de usuario ya existe
+        $sql_verificar = "SELECT COUNT(*) as total FROM usuario WHERE NombreUsu = ?";
+        $stmt_verificar = $this->prepareStatement($sql_verificar);
+        $stmt_verificar->bind_param("s", $nombreUsu);
+        $stmt_verificar->execute();
+        $resultado_verificar = $stmt_verificar->get_result()->fetch_assoc();
+
+        if ($resultado_verificar['total'] > 0) {
+            // El nombre de usuario ya existe, devolver un mensaje de error
+            return "El nombre de usuario ya está registrado.";
+        }
+
+        // Si no existe, hacemos la inserción SQL
+        $sql_insertar = "INSERT INTO usuario (Nombre, NombreUsu, Clave, Correo, EsAdmin) VALUES (?, ?, ?, ?, ?)";
+
+        // Preparamos la consulta
+        $stmt_insertar = $this->prepareStatement($sql_insertar);
+
+        // Asociamos los parámetros a la consulta
+        $stmt_insertar->bind_param(
+            "ssssi", 
+            $nombre,
+            $nombreUsu,
+            $clave,
+            $correo,
+            $esAdmin
+        );
+
+        // Ejecutamos la consulta
+        if ($stmt_insertar->execute()) {
+            // Éxito
+            $mensaje = "Usuario agregado";
+        } else {
+            // Error
+            $mensaje = "Error al agregar usuario: " . $stmt_insertar->error;
+        }
+
+        // Cerrar el statement
+        $stmt_insertar->close();
+
+        // Retornamos el mensaje
+        return $mensaje;
+    }
+
+    
 }

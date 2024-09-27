@@ -1,3 +1,31 @@
+<?php
+//llamado controladores
+$usuarioController = new UsuarioController();
+
+if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
+    //creamos la variable mensaje y mandamos el objecto a la funcion 
+    $mensaje = $usuarioController->insertUsuario(new Usuario(
+        null,
+        $_POST["nombre"],
+        $_POST["nomUsu"],
+        $_POST["pass"],
+        $_POST["email"],
+        $_POST["cargo"]
+    ));
+
+    // Suponiendo que $mensaje contiene el resultado de la inserción
+    if (!empty($mensaje)) {
+        // Escribimos el mensaje en un alert y redirigimos a la misma página
+        echo "<script>alert('$mensaje');</script>";
+        echo "<script>location.href='agregarusuario';</script>";
+    } else {
+        // Si no hay mensaje, mostramos un error genérico
+        echo "<script>alert('Error al agregar usuario');</script>";
+        echo "<script>location.href='agregarusuario';</script>";
+    }
+}
+
+?>
 <div class="page-header">
     <h3 class="page-title"> Usuarios </h3>
     <nav aria-label="breadcrumb">
@@ -13,36 +41,37 @@
             <div class="card-body">
                 <h4 class="card-title">Agregar usuarios</h4>
                 <p class="card-description"> Ingrese la informacion </p>
-                <form class="forms-sample">
+                <!-- Aquie esta el formulario para agregar cliente -->
+                <form class="forms-sample" method="post">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Nombre completo</label>
-                        <input type="text" class="form-control" placeholder="nombre completo" required>
+                        <input name="nombre" type="text" class="form-control" placeholder="nombre completo" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputUsername1">Nombre de Usuario</label>
-                        <input type="text" class="form-control" placeholder="nombre de usuario" required>
+                        <input name="nomUsu" type="text" class="form-control" placeholder="nombre de usuario" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <label for="selectCargo">Cargo</label>
-                        <select class="form-control" id="selectCargo" required>
+                        <select name="cargo" class="form-control" id="selectCargo" required>
                             <option value="">Seleccione un cargo</option>
-                            <option value="">Administrador</option>
-                            <option value="">Cajero</option>
+                            <option value="1">Administrador</option>
+                            <option value="0">Cajero</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Contrañase</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                        <label for="exampleInputPassword1">Contraseña</label>
+                        <input name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Confirme Contrañase</label>
-                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" required>
+                        <label for="exampleInputConfirmPassword1">Confirme Contraseña</label>
+                        <input name="pass2" type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Agregar</button>
+                    <button name="agregar" type="submit" class="btn btn-primary mr-2">Agregar</button>
                     <button class="btn btn-dark">Cancel</button>
                 </form>
             </div>

@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    AREA DEL CAJERO
-</body>
-</html>
+<div class="page-header">
+    <h3 class="page-title">Bienvenido Cajero </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Formulario</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Usuario</li>
+        </ol>
+    </nav>
+</div>
