@@ -47,6 +47,7 @@
             <!-- por el momento no borrar aqui va ir contenido -->
             <div class="main-panel">
                 <div class="content-wrapper">
+<<<<<<< HEAD
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card corona-gradient-card">
@@ -707,6 +708,8 @@
                             </div>
                         </div>
                     </div>
+=======
+>>>>>>> 649a4b3340107e0c4bf06ca362db2e4e2518b720
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
                     //por el momento no hay secciones creadas
