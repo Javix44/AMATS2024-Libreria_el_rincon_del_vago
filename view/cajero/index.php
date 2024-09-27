@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Area Empleado</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../template/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../template/assets/vendors/css/vendor.bundle.base.css">
@@ -21,7 +21,9 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../template/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../template/assets/images/favicon.png" />
+    <!--
+    Mas adelante agregare el icono de la aplicacion
+    <link rel="shortcut icon" href="../../template/assets/images/favicon.png" />-->
 </head>
 
 <body>
@@ -49,12 +51,12 @@
                                             <img src="../../template/assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
                                         </div>
                                         <div class="col-5 col-sm-7 col-xl-8 p-0">
-                                            <h4 class="mb-1 mb-sm-0">Want even more features?</h4>
-                                            <p class="mb-0 font-weight-normal d-none d-sm-block">Check out our Pro version with 5 unique layouts!</p>
+                                            <h4 class="mb-1 mb-sm-0">Revisar el Stock de Productos</h4>
+                                            <p class="mb-0 font-weight-normal d-none d-sm-block">Recuerda avisar al administrador</p>
                                         </div>
                                         <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                                             <span>
-                                                <a href="https://www.bootstrapdash.com/product/corona-admin-template/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Upgrade to PRO</a>
+                                                <a href="https://www.bootstrapdash.com/product/corona-admin-template/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Revisar Stock</a>
                                             </span>
                                         </div>
                                     </div>
