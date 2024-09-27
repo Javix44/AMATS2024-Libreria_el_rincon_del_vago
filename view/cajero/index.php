@@ -28,13 +28,13 @@
     <div class="container-scroller">
         <!-- menu izquierdo -->
         <?php
-        require_once("menulateralCajero.php");
+        require_once("menulateralcajero.php");
         ?>
 
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
             <?php
-            require_once("menusuperiorCajero.php");
+            require_once("menusuperiorcajero.php");
             ?>
             <!-- contenido -->
             <!-- por el momento no borrar aqui va ir contenido -->
