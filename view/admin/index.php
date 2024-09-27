@@ -47,9 +47,8 @@
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
                     //por el momento no hay secciones creadas
-                    //$pages = new Pages();
-                    // require_once($pages->ViewPage());
-                    require_once("form/agregarusuario.php")
+                    $pages = new Pages();
+                    require_once($pages->ViewPage());
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->

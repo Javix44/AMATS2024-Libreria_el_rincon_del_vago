@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Area Empleado</title>
+    <title>Corona cajero</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="template/assets/vendors/css/vendor.bundle.base.css">
@@ -25,13 +25,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
-<<<<<<< HEAD
-    <!--
-    Mas adelante agregare el icono de la aplicacion
-    <link rel="shortcut icon" href="../../template/assets/images/favicon.png" />-->
-=======
     <link rel="shortcut icon" href="template/assets/images/favicon.png" />
->>>>>>> c83bd7acf61cc2be54ca6b833fcaa786affc40d7
 </head>
 
 <body>
@@ -53,9 +47,8 @@
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
                     //por el momento no hay secciones creadas
-                    //$pages = new Pages();
-                    // require_once($pages->ViewPage());
-                    require_once("form/agregarusuario.php")
+                    $pages = new Pages();
+                    require_once($pages->ViewPage());
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
