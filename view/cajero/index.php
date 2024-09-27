@@ -34,7 +34,7 @@
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
             <?php
-            require_once("menusuperirorCajero.php");
+            require_once("menusuperiorCajero.php");
             ?>
             <!-- contenido -->
             <!-- por el momento no borrar aqui va ir contenido -->
