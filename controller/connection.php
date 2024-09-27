@@ -3,7 +3,7 @@ date_default_timezone_set("America/El_Salvador");
 if (!defined("Servidor")) define("SERVIDOR", "localhost");
 if (!defined("USUARIO")) define("USUARIO", "root");
 if (!defined("PASSWORD")) define("PASSWORD", "");
-if (!defined("BD")) define("BD", "libreriawed");
+if (!defined("BD")) define("BD", "libreriaweb");
 
 //creamos la clase para la conexion
 class Connection
@@ -26,6 +26,10 @@ class Connection
     }
     //recordar que la funcion cn hay que llamarlay y el constructor al instanciar la clase se ejecuta
 
+    public function prepareStatement($sql)
+    {
+        return $this->cn()->prepare($sql);
+    }
     //creamos un procedimiento para ejecutar cualquier sentencia
     public function ejecutarSQL($sql)
     {
