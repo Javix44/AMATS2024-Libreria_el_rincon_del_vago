@@ -25,7 +25,6 @@ class Connection
         return $this->connect;
     }
     //recordar que la funcion cn hay que llamarlay y el constructor al instanciar la clase se ejecuta
-
     public function prepareStatement($sql)
     {
         return $this->cn()->prepare($sql);
