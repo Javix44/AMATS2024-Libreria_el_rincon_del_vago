@@ -12,7 +12,7 @@ class UsuarioController extends Connection
         // Inicializar el array de resultados
         $resultado = array();
         // Consultar en la tabla usuario
-        $sql_alumno = "SELECT * FROM usuario WHERE NombreUsu = ? AND (clave = ? OR clave = ?)";
+        $sql_alumno = "SELECT * FROM usuario WHERE NombreUsu = ? AND (Clave = ? OR Clave = ?)";
         $stmt_alumno = $this->prepareStatement($sql_alumno);
         $stmt_alumno->bind_param("sss", $NombreUsu, $clave, $clave_encriptada);
         $stmt_alumno->execute();
@@ -23,7 +23,7 @@ class UsuarioController extends Connection
                 null,
                 null,
                 $fila["NombreUsu"],
-                $fila["clave"],
+                $fila["Clave"],
                 null,
                 $fila["EsAdmin"],
                 $fila["Estado"]

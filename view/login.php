@@ -2,14 +2,14 @@
 $UsuarioController = new UsuarioController;
 if (isset($_POST["ok"])) {
     if (!empty($_POST["username"]) && !empty($_POST["clave"])) {
-        $Usuario = new Usuario("","",$_POST["username"], $_POST["clave"], "", "","");
+        $Usuario = new Usuario("", "", $_POST["username"], $_POST["clave"], "", "", "");
 
         $_SESSION["login"] = $_POST["username"];
         $resultado = $UsuarioController->login($Usuario);
         if (empty($resultado)) {
             echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                     <strong>Datos Incorrectos, vuelva a Intentarlo</strong>
-                  </div>";
+                </div>";
         } else {
             foreach ($resultado as $Fila) {
                 if ($Fila->getEstado() == "1") {
@@ -23,14 +23,14 @@ if (isset($_POST["ok"])) {
                 } else {
                     echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                             <strong>Acceso denegado</strong>
-                          </div>";
+                        </div>";
                 }
             }
         }
     } else {
         echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                 <strong>Faltan Datos</strong>
-              </div>";
+            </div>";
     }
 }
 ?>
