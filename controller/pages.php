@@ -16,7 +16,7 @@ class Pages {
                 $pagina = $this->CargarVistaCajero($url);
             }
         } else {
-            require_once("View/login.php");
+            require_once("view/login.php");
         }
 
         return $pagina;
@@ -27,9 +27,9 @@ class Pages {
     {
         switch ($url[0]) {
             case "":
-                return "View/admin/inicio.php";
+                return "view/admin/inicio.php";
             case "inicio":
-                return "View/admin/inicio.php";
+                return "view/admin/inicio.php";
             default:
                 return "e404.php";
         }
