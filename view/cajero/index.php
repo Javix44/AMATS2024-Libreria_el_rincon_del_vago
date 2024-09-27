@@ -25,13 +25,10 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
-<<<<<<< HEAD
     <!--
     Mas adelante agregare el icono de la aplicacion
     <link rel="shortcut icon" href="../../template/assets/images/favicon.png" />-->
-=======
     <link rel="shortcut icon" href="template/assets/images/favicon.png" />
->>>>>>> c83bd7acf61cc2be54ca6b833fcaa786affc40d7
 </head>
 
 <body>
@@ -50,7 +47,6 @@
             <!-- por el momento no borrar aqui va ir contenido -->
             <div class="main-panel">
                 <div class="content-wrapper">
-<<<<<<< HEAD
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card corona-gradient-card">
@@ -711,7 +707,6 @@
                             </div>
                         </div>
                     </div>
-=======
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
                     //por el momento no hay secciones creadas
@@ -719,7 +714,6 @@
                     // require_once($pages->ViewPage());
                     require_once("form/agregarusuario.php")
                     ?>
->>>>>>> c83bd7acf61cc2be54ca6b833fcaa786affc40d7
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
                 <?php
