@@ -2,34 +2,33 @@
 $UsuarioController = new UsuarioController;
 if (isset($_POST["ok"])) {
     if (!empty($_POST["username"]) && !empty($_POST["clave"])) {
-        $Usuario = new Usuario($_POST["username"], $_POST["clave"], "", "");
+        $Usuario = new Usuario("","",$_POST["username"], $_POST["clave"], "", "","");
 
         $_SESSION["login"] = $_POST["username"];
-        $resultado = $Usuario_Controller->login($Usuario);
+        $resultado = $UsuarioController->login($Usuario);
         if (empty($resultado)) {
-            echo "<div class='alert alert-danger text-center' role='alert'>
+            echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                     <strong>Datos Incorrectos, vuelva a Intentarlo</strong>
                   </div>";
         } else {
             foreach ($resultado as $Fila) {
-                if ($Fila->getEstado() == "5" || $Fila->getEstado() == "1") {
-                    if ($Fila->getEsAdmin() == "7") {
+                if ($Fila->getEstado() == "1") {
+                    if ($Fila->getEsAdmin() == "1") {
                         $_SESSION["nivel"] = "admin";
                         echo "<script>window.location.href = '';</script>";
                     } else {
-                        $_SESSION["nivel"] = "usuario";
+                        $_SESSION["nivel"] = "cajero";
                         echo "<script>window.location.href = '';</script>";
                     }
-                    $_SESSION["Clave"] = $Fila->getClave();
                 } else {
-                    echo "<div class='alert alert-danger text-center' role='alert'>
+                    echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                             <strong>Acceso denegado</strong>
                           </div>";
                 }
             }
         }
     } else {
-        echo "<div class='alert alert-danger text-center' role='alert'>
+        echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                 <strong>Faltan Datos</strong>
               </div>";
     }
@@ -49,6 +48,17 @@ if (isset($_POST["ok"])) {
     <!-- Font Awesome for social icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
+        .fixed-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 80%;
+            max-width: 500px;
+            opacity: 0.95;
+        }
+
         body {
             height: 100%;
             margin: 0;
@@ -62,13 +72,16 @@ if (isset($_POST["ok"])) {
             height: 100vh;
         }
 
-
         .login-box {
             background-color: #191c24;
             width: 100%;
-            max-width: 400px;
-            padding: 30px;
+            max-width: 450px;
+            margin: 70px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
         }
 
         .form-control::placeholder {
@@ -79,20 +92,24 @@ if (isset($_POST["ok"])) {
             background-color: #333;
             border: none;
             color: #fff;
+            padding: 15px;
         }
 
         .text-white {
             color: #fff;
         }
+
+        button {
+            margin-top: 50px;
+        }
     </style>
 </head>
 
 <body>
-
     <div class="container-fluid login-container d-flex align-items-center justify-content-center">
-        <div class="login-box p-4 rounded">
+        <div class="login-box p-5 rounded">
             <h2 class="text-white text-center mb-4">Libreria Rincon del Estudiante</h2>
-            <form>
+            <form method="post">
                 <div class="form-group">
                     <label for="email" class="text-white">Nombre de Usuario*</label>
                     <input type="text" class="form-control" name="username" placeholder="Ingresa tu Nombre de Usuario" required>
