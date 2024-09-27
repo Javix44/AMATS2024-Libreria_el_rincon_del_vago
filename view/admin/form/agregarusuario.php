@@ -42,7 +42,7 @@
                         <label for="exampleInputConfirmPassword1">Confirme Contrañase</label>
                         <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2">Agregar</button>
                     <button class="btn btn-dark">Cancel</button>
                 </form>
             </div>

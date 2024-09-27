@@ -28,8 +28,8 @@ class Pages {
         switch ($url[0]) {
             case "":
                 return "view/admin/inicio.php";
-            case "inicio":
-                return "view/admin/inicio.php";
+            case "agregarusuario":
+                return "view/admin/form/agregarusuario.php";
             default:
                 return "e404.php";
         }

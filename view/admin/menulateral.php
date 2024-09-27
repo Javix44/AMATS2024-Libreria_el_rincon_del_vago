@@ -55,14 +55,14 @@
             </div>
         </li>
         <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
+            <span class="nav-link">Menu</span>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="agregarusuario">
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Agregar Usuario</span>
             </a>
         </li>
         <li class="nav-item menu-items">
