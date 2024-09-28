@@ -76,7 +76,7 @@ $listaProveedor = $proveedorController->ShowProveedores();
                                 <td>" . htmlspecialchars($pro->getCorreo()) . "</td>
                                 <td>" . htmlspecialchars($pro->getTelefono()) . "</td>
                                 <td>
-        <form method='post'>
+        <form method='post' onsubmit='return confirmarEliminacion(\"" . addslashes($pro->getNombre()) . "\");'>
             <input type='hidden' name='id' value='" . $pro->getIdProveedor() . "'>
             <button type='submit' name='eliminar' class='btn btn-outline-danger btn-icon-text'>
                 <i class='mdi mdi-delete-forever btn-icon-append'></i> Eliminar
@@ -175,5 +175,9 @@ $listaProveedor = $proveedorController->ShowProveedores();
             valor = valor.slice(0, 4) + '-' + valor.slice(4);
         }
         input.value = valor;
+    }
+
+    function confirmarEliminacion(nombre) {
+        return confirm('¿Estás seguro de que deseas eliminar al proveedor ' + nombre + '? Esta acción no se puede deshacer.');
     }
 </script>

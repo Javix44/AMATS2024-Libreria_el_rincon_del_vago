@@ -84,7 +84,7 @@ $listaUsuarios = $usuarioController->ShowUsuarios();
                                 <td>" . htmlspecialchars($verCargo) . "</td>
                                 <td>" . htmlspecialchars($verEstado) . "</td>
                                 <td>
-        <form method='post'>
+        <form method='post' onsubmit='return confirmarEliminacion(\"" . addslashes($usu->getNombre()) . "\");'>
             <input type='hidden' name='id' value='" . $usu->getIdUsuario() . "'>
             <button type='submit' name='eliminar' class='btn btn-outline-danger btn-icon-text'>
                 <i class='mdi mdi-delete-forever btn-icon-append'></i> Eliminar
@@ -186,5 +186,9 @@ $listaUsuarios = $usuarioController->ShowUsuarios();
 
         var editModal = new bootstrap.Modal(document.getElementById('editModal'));
         editModal.show();
+    }
+
+    function confirmarEliminacion(nombre) {
+        return confirm('¿Estás seguro de que deseas eliminar al usuario ' + nombre + '? Esta acción no se puede deshacer.');
     }
 </script>
