@@ -19,6 +19,10 @@
     <!-- plugins para los formularios -->
     <link rel="stylesheet" href="template/assets/vendors/select2/select2.min.css">
     <link rel="stylesheet" href="template/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -31,15 +35,11 @@
 <body>
     <div class="container-scroller">
         <!-- menu izquierdo -->
-        <?php
-        require_once("menulateral.php");
-        ?>
+        <?php require_once("menulateral.php"); ?>
 
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
-            <?php
-            require_once("menusuperior.php");
-            ?>
+            <?php require_once("menusuperior.php"); ?>
             <!-- contenido -->
             <!-- por el momento no borrar aqui va ir contenido -->
             <div class="main-panel">
@@ -52,41 +52,41 @@
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
-                <?php
-                require_once("footer.php");
-                ?>
+                <?php require_once("footer.php"); ?>
             </div>
             <!-- main-panel ends -->
         </div>
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    <!-- Cargar jQuery primero -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
     <script src="template/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="template/assets/vendors/progressbar.js/progressbar.min.js"></script>
     <script src="template/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="template/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <script src="template/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+
     <!-- plugins para formularios -->
     <script src="template/assets/vendors/select2/select2.min.js"></script>
     <script src="template/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
+
+    <!-- Inicializar DataTables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Archivos personalizados -->
     <script src="template/assets/js/off-canvas.js"></script>
     <script src="template/assets/js/hoverable-collapse.js"></script>
     <script src="template/assets/js/misc.js"></script>
     <script src="template/assets/js/settings.js"></script>
     <script src="template/assets/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
     <script src="template/assets/js/dashboard.js"></script>
-    <!-- Custom para formularios -->
     <script src="template/assets/js/file-upload.js"></script>
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
-    <!-- End custom js for this page -->
+
 </body>
 
 </html>

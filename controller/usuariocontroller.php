@@ -48,7 +48,7 @@ class UsuarioController extends Connection
         return $salida;
     }
 
-    public function insertUsuario($usuario)
+    public function InsertUsuario($usuario)
     {
         // Obtenemos los valores del objeto
         $nombre = $usuario->getNombre();
@@ -78,7 +78,7 @@ class UsuarioController extends Connection
 
         // Asociamos los parámetros a la consulta
         $stmt_insertar->bind_param(
-            "ssssi", 
+            "ssssi",
             $nombre,
             $nombreUsu,
             $clave,
@@ -102,5 +102,101 @@ class UsuarioController extends Connection
         return $mensaje;
     }
 
-    
+    //funcion para ver todos los usuarios
+    public function ShowUsuarios()
+    {
+
+        $resultado = array();
+
+        $sql = "SELECT * FROM usuario";
+        $stm = $this->prepareStatement($sql);
+        $stm->execute();
+
+        $rs = $stm->get_result();
+
+        while ($fila = $rs->fetch_assoc()) {
+            $resultado[] = new Usuario(
+                $fila['IdUsuario'],
+                $fila['Nombre'],
+                $fila['NombreUsu'],
+                $fila['Clave'],
+                $fila['Correo'],
+                $fila['EsAdmin'],
+                $fila['Estado'],
+            );
+        }
+        return $resultado;
+    }
+
+    //funcion para actualizar usuarios
+    public function UpdateUsuario($usuario)
+    {
+        // Obtenemos los valores del objeto
+        $idUsuario = $usuario->getIdUsuario();
+        $nombre = $usuario->getNombre();
+        $nombreUsu = $usuario->getNombreUsu();
+        $correo = $usuario->getCorreo();
+        $esAdmin = $usuario->getEsAdmin();
+        $estado = $usuario->getEstado();
+        $mensaje = "";
+
+        // Verificar si el nombre de usuario ya existe
+        $sqlVerificar = "SELECT COUNT(*) as total FROM usuario WHERE NombreUsu = ? AND IdUsuario != ?";
+        $stmtVerificar = $this->prepareStatement($sqlVerificar);
+        $stmtVerificar->bind_param("si", $nombreUsu, $idUsuario);
+        $stmtVerificar->execute();
+        $resultadoVerificar = $stmtVerificar->get_result()->fetch_assoc();
+
+        if ($resultadoVerificar['total'] > 0) {
+            // El nombre de usuario ya existe, devolver un mensaje de error
+            return "El nombre de usuario ya está registrado.";
+        }
+
+        $sql = "UPDATE usuario SET Nombre = ?, NombreUsu = ?, Correo = ?, EsAdmin = ?, Estado = ? WHERE IdUsuario = ?";
+
+        // Preparamos la consulta
+        $stmt = $this->prepareStatement($sql);
+
+        // Asociamos los parámetros a la consulta
+        $stmt->bind_param(
+            "sssiii",
+            $nombre,
+            $nombreUsu,
+            $correo,
+            $esAdmin,
+            $estado,
+            $idUsuario
+        );
+
+        // Ejecutamos la consulta
+        if ($stmt->execute()) {
+            // Éxito
+            $mensaje = "Usuario actualizado";
+        } else {
+            // Error
+            $mensaje = "Error al agregar usuario: " . $stmt->error;
+        }
+
+        // Cerrar el statement
+        $stmt->close();
+
+        // Retornamos el mensaje
+        return $mensaje;
+    }
+
+    //funcion para eliminar usuarios
+    public function DeleteUsuario($idUsuario)
+    {
+        $mensaje = "";
+        $sql = "DELETE FROM usuario WHERE IdUsuario = ?";
+        $stmt = $this->prepareStatement($sql);
+        $stmt->bind_param("i", $idUsuario);
+        if ($stmt->execute()) {
+            $mensaje = "Usuario eliminado con exito";
+        } else {
+            $mensaje = "Error al eliminar usuario: " . $stmt->error;
+        }
+        $stmt->close();
+        return $mensaje;
+    }
 }
