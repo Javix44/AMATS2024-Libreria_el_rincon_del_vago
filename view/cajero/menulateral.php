@@ -93,7 +93,7 @@
             </a>
             <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Agregar Productos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="agregarproducto">Agregar Productos</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ver Stock</a></li>
                     
                 </ul>
