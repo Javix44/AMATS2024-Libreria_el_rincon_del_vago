@@ -4,7 +4,7 @@ $usuarioController = new UsuarioController();
 
 if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
     //creamos la variable mensaje y mandamos el objecto a la funcion 
-    $mensaje = $usuarioController->InsertUsuario(new Usuario(
+    $mensaje = $usuarioController->insertUsuario(new Usuario(
         null,
         $_POST["nombre"],
         $_POST["nomUsu"],
@@ -53,7 +53,7 @@ if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required autocomplete="username">
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <label for="selectCargo">Cargo</label>
@@ -65,11 +65,11 @@ if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Contraseña</label>
-                        <input name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required autocomplete="new-password">
+                        <input name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Clave" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputConfirmPassword1">Confirme Contraseña</label>
-                        <input name="pass2" type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" required autocomplete="new-password">
+                        <input name="pass2" type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Confirmar clave" required>
                     </div>
                     <button name="agregar" type="submit" class="btn btn-primary mr-2">Agregar</button>
                     <button class="btn btn-dark">Cancel</button>

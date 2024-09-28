@@ -89,7 +89,7 @@ class UsuarioController extends Connection
         // Ejecutamos la consulta
         if ($stmt_insertar->execute()) {
             // Éxito
-            $mensaje = "Usuario agregado";
+            $mensaje = "Usuario agregado con exito";
         } else {
             // Error
             $mensaje = "Error al agregar usuario: " . $stmt_insertar->error;
