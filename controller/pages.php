@@ -35,10 +35,14 @@ class Pages
                 return "view/admin/form/agregarusuario.php";
             case "agregarproveedores":
                 return "view/admin/form/agregarproveedores.php";
+                case "agregarcategorias":
+                    return "view/admin/form/agregarcategoria.php";
             case "listausuarios":
                 return "view/admin/consultas/listausuarios.php";
             case "listaproveedores":
                 return "view/admin/consultas/listaproveedores.php";
+                case "listacategorias":
+                    return "view/admin/consultas/listacategorias.php";
             default:
                 return "view/e404.php";
         }

@@ -70,7 +70,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-laptop"></i>
                 </span>
-                <span class="menu-title">Administrar Usuarios</span>
+                <span class="menu-title">Usuarios</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -85,13 +85,28 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-laptop"></i>
                 </span>
-                <span class="menu-title">Administrar Proveedores</span>
+                <span class="menu-title">Proveedores</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="agregarproveedores">Agregar</a></li>
                     <li class="nav-item"> <a class="nav-link" href="listaproveedores">Ver proveedores</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop"></i>
+                </span>
+                <span class="menu-title">Categorias</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="agregarcategorias">Agregar</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="listacategorias">Ver Categorias</a></li>
                 </ul>
             </div>
         </li>
