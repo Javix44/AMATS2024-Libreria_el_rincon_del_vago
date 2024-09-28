@@ -33,8 +33,12 @@ class Pages
                 return "view/admin/inicio.php";
             case "agregarusuario":
                 return "view/admin/form/agregarusuario.php";
+            case "agregarproveedores":
+                return "view/admin/form/agregarproveedores.php";
             case "listausuarios":
                 return "view/admin/consultas/listausuarios.php";
+            case "listaproveedores":
+                return "view/admin/consultas/listaproveedores.php";
             default:
                 return "view/e404.php";
         }

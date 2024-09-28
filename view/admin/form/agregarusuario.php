@@ -30,8 +30,8 @@ if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
     <h3 class="page-title"> Usuarios </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Formulario</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Agregar Usuario</li>
+            <li class="breadcrumb-item"><a href="listausuarios">Ver Usuarios</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Administrar Usuarios</li>
         </ol>
     </nav>
 </div>
