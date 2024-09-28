@@ -48,6 +48,8 @@ class Pages
                 return "view/cajero/inicio.php";
             case "inicio":
                 return "view/cajero/inicio.php";
+            case "agregarventa":
+                    return "view/cajero/form/agregarventa.php";
             default:
                 return "view/e404.php";
         }

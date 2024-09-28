@@ -75,7 +75,7 @@
             </a>
             <div class="collapse" id="ui-basic1">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Registrar una Venta</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="agregarventa">Registrar una Venta</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ventas Realizadas</a></li>
                     
                 </ul>
