@@ -104,7 +104,7 @@
             <div class="collapse" id="Ingresos">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="ingresoproducto">Registrar Ingresos</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="verregistro">Ver Registro</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="listaingresos">Ver Registro</a></li>
                 </ul>
             </div>
         </li>

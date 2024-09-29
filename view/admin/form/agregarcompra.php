@@ -64,16 +64,12 @@ if (isset($_POST["agregar"])) {
                     <div class="form-group">
                         <label for="exampleInputUsername1">Elemento Ingresado</label> <br>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="nombreProducto" placeholder="Producto Seleccionado..." aria-describedby="button-addon2" readonly>
+                            <input type="text" class="form-control" id="nombreProducto" placeholder="Producto Seleccionado..." aria-describedby="button-addon2" readonly required>
                             <!-- Abre el modal del listado de productos -->
                             <button type='button' class='btn btn-primary' onclick='openmodalSeleccion()'>
                                 Listar <i class='mdi mdi-format-list-bulleted-type'></i>
                             </button>
                             <br>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleTextarea1">Fecha Ingreso</label>
-                            <input type="text" class="form-control" placeholder="Fecha Automatica del Sistema..." aria-describedby="button-addon2" readonly>
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Cantidad Ingresada</label>
@@ -83,7 +79,7 @@ if (isset($_POST["agregar"])) {
                             <label for="exampleTextarea1">Proveedor</label>
                             <div>
                                 <select class="form-control" name="id_proveedor" required>
-                                    <option selected>Seleccionar Proveedor</option>
+                                    <option value="" selected>Seleccionar Proveedor</option>
                                     <?php foreach ($Prove as $fila_prove) {
                                         echo "<option value='" . $fila_prove->getIdProveedor() . "'>" . $fila_prove->getNombre() . "</option>";
                                     } ?>
@@ -133,20 +129,24 @@ if (isset($_POST["agregar"])) {
     </div>
 </div>
 
-
 <script>
+    $(document).ready(function() {
+        $('#tablaProductos').DataTable({
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });
+
     function openmodalSeleccion() {
-        var modalSeleccion = new bootstrap.Modal(document.getElementById('modalSeleccion'));
-        modalSeleccion.show();
+        $('#modalSeleccion').modal('show');
     }
-    // Delegar el evento click a los botones de agregar
+
     $(document).on('click', '.btn-dark', function() {
         var idProducto = $(this).data('id');
         var nombreProducto = $(this).data('nombre');
-        // Establecer el ID del producto en el campo oculto
         $('#idproducto').val(idProducto);
-        $('#nombreProducto').val(nombreProducto); // Mostrar el nombre en el input
-        // Cerrar el modal
+        $('#nombreProducto').val(nombreProducto);
         $('#modalSeleccion').modal('hide');
     });
 </script>

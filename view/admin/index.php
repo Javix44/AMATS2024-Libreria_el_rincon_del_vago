@@ -136,28 +136,5 @@ $Usuario =  $_SESSION["IdUsuario"];
     <script src="template/assets/js/file-upload.js"></script>
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
-
-
-    <script>
-        // Inicializar DataTable
-        function consulta1() {
-            $('#tablaProductos').DataTable({
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                }
-            });
-        }
-
-        function consulta2() {
-            $('#Mostrar_Ingresos').DataTable({
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                }
-            });
-        }
-        consulta1();
-        consulta2();
-    </script>
 </body>
-
 </html>
