@@ -27,10 +27,10 @@ class ProveedorController extends Connection
         // Ejecutamos la consulta
         if ($stmt_insert->execute()) {
             // Éxito
-            $mensaje = "Usuario agregado";
+            $mensaje = "Proveedor agregado exitosamente";
         } else {
             // Error
-            $mensaje = "Error al agregar usuario: " . $stmt_insert->error;
+            $mensaje = "Error al agregar el proveedor: " . $stmt_insert->error;
         }
 
         // Cerrar el statement
@@ -87,10 +87,10 @@ class ProveedorController extends Connection
         // Ejecutamos la consulta
         if ($stmt->execute()) {
             // Éxito
-            $mensaje = "Usuario agregado";
+            $mensaje = "Datos actualizados correctamente";
         } else {
             // Error
-            $mensaje = "Error al agregar usuario: " . $stmt->error;
+            $mensaje = "Error al actualizar proveedor: " . $stmt->error;
         }
 
         // Cerrar el statement
