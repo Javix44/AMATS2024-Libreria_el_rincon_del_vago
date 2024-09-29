@@ -36,10 +36,10 @@ $CompraController = new CompraController();
                             ?>
                                 <tr>
                                     <td class='text-center'><?= $fila_Ingreso->getUsuario() ?></td>
-                                    <td class='text-center'><?= $fila_Ingreso->getFechaRegistro() ?></td>
-                                    <td class='text-center'><?= $fila_Ingreso->getProducto() ?></td>
-                                    <td class='text-center'><?= $fila_Ingreso->getCantidad() ?></td>
+                                    <td class='text-center'><?= date('Y-m-d', strtotime($fila_Ingreso->getFechaRegistro())) ?></td>
                                     <td class='text-center'><?= $fila_Ingreso->getProveedor() ?></td>
+                                    <td class='text-center'><?= $fila_Ingreso->getCantidad() ?></td>
+                                    <td class='text-center'><?= $fila_Ingreso->getProducto() ?></td>
                                 </tr>
                         <?php
                             }

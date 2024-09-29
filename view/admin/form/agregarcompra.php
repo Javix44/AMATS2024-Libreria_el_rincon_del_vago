@@ -13,17 +13,13 @@ if (isset($_POST["agregar"])) {
         echo "<script>location.href='ingresoproducto';</script>";
         exit; // Detenemos la ejecución del script si hay un error
     }
-    // Validación de la fecha
-    $fechaRegistro = $_POST["fechaRegistro"];
-    // Convertir la fecha a string si es necesario
-    $fechaRegistroString = date('Y-m-d', strtotime($fechaRegistro));
     // Creamos la variable mensaje y mandamos el objeto a la función 
     $mensaje = $CompraController->InsertIngreso(new Compra(
         null,
         $Usuario,
         $_POST["id_proveedor"],
         $_POST["idproducto"],
-        $fechaRegistroString, // Usamos la fecha convertida
+        null, // Fecha asignada por la BD automaticamente
         $cantidadIngreso
     ));
 
@@ -40,8 +36,10 @@ if (isset($_POST["agregar"])) {
 <style>
     /* Estilo para el campo readonly */
     input[readonly] {
-        background-color: #283038 !important; /* Color de fondo normal */
-        color: #fff !important; /* Color del texto normal */
+        background-color: #283038 !important;
+        /* Color de fondo normal */
+        color: #fff !important;
+        /* Color del texto normal */
     }
 </style>
 <div class="page-header">
@@ -75,7 +73,7 @@ if (isset($_POST["agregar"])) {
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Fecha Ingreso</label>
-                            <input type="date" class="form-control" name="cantidad_ingreso" min="1" placeholder="Cantidad Ingresada" required>
+                            <input type="text" class="form-control" placeholder="Fecha Automatica del Sistema..." aria-describedby="button-addon2" readonly>
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Cantidad Ingresada</label>

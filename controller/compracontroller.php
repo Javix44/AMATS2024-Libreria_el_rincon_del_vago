@@ -7,7 +7,6 @@ class CompraController extends Connection
     public function InsertIngreso($Ingreso)
     {
         $idUsuario = $Ingreso->getUsuario();
-        $fecha_ingreso = $Ingreso->getFechaRegistro();
         $idproducto = $Ingreso->getProducto();
         $cantidad_ingreso = $Ingreso->getCantidad();
         $idproveedor = $Ingreso->getProveedor();
@@ -15,16 +14,15 @@ class CompraController extends Connection
         //Consulta de Insercion
         $sql_insertar = "
         INSERT INTO ingresos 
-        (idUsuario, fecha_ingreso, idproducto, cantidad_ingreso, idproveedor)
-        VALUES (?, ?, ?, ?, ?)
+        (idUsuario, idproducto, cantidad_ingreso, idproveedor)
+        VALUES (?, ?, ?, ?)
         ";
         // Preparamos la consulta
         $stmt_insertar = $this->prepareStatement($sql_insertar);
         // Asociamos los parámetros a la consulta
         $stmt_insertar->bind_param(
-            "isiii",
+            "iiii",
             $idUsuario,
-            $fecha_ingreso,
             $idproducto,
             $cantidad_ingreso,
             $idproveedor
@@ -66,10 +64,10 @@ class CompraController extends Connection
             $resultado[] = new Compra(
                 $fila['Id_ingreso'],
                 $fila['Nombre_Usuario'],
-                $fila['fecha_ingreso'],
                 $fila['Nombre_Proveedor'],
-                $fila['cantidad_ingreso'],
-                $fila['Nombre_Producto']
+                $fila['Nombre_Producto'],
+                $fila['fecha_ingreso'],
+                $fila['cantidad_ingreso']
             );
         }
         return $resultado;
