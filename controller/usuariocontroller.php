@@ -203,7 +203,7 @@ class UsuarioController extends Connection
     //funcion para Obtener Nombre
     public function ObtenerNombre($nomUsu)
     {
-        $sql = "Select Nombre from usuario WHERE NombreUsu = " . $nomUsu . " ";
+        $sql = "Select Nombre from usuario WHERE NombreUsu = '" . $nomUsu . "' ";
         // Ejecutar la consulta
         $result = $this->ejecutarSQL($sql);
 
