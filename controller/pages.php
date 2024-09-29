@@ -65,7 +65,7 @@ class Pages
             case "agregarproducto":
                 return "view/cajero/form/agregarproducto.php";
             default:
-                return "view/e404.php";;
+                return "view/e404.php";
         }
     }
 }
