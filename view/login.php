@@ -19,6 +19,7 @@ if (isset($_POST["ok"])) {
                         $_SESSION["nivel"] = "Cajero";
                         echo "<script>window.location.href = '';</script>";
                     }
+                    $_SESSION["IdUsuario"] = $Fila->getIdUsuario();
                 } else {
                     echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                             <strong>Acceso denegado</strong>

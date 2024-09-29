@@ -1,3 +1,6 @@
+<?php
+$Usuario =  $_SESSION["IdUsuario"];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,6 +33,9 @@
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URL ?>resources/img/libro-abierto.png">
+
+    <!-- Cargar jQuery primero -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -102,8 +108,7 @@
             <!-- main-panel ends -->
         </div>
     </div>
-    <!-- Cargar jQuery primero -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>
@@ -132,6 +137,27 @@
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
 
+
+    <script>
+        // Inicializar DataTable
+        function consulta1() {
+            $('#tablaProductos').DataTable({
+                language: {
+                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+        }
+
+        function consulta2() {
+            $('#Mostrar_Ingresos').DataTable({
+                language: {
+                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+        }
+        consulta1();
+        consulta2();
+    </script>
 </body>
 
 </html>

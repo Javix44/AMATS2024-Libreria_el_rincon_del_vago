@@ -1,8 +1,49 @@
 <?php
+//llamado controladores
 $ProveedorController = new ProveedorController();
 $Prove =  $ProveedorController->ShowProveedores();
 $productoController = new ProductoController();
+$CompraController = new CompraController();
+
+if (isset($_POST["agregar"])) {
+    // Validación de la cantidad ingresada
+    $cantidadIngreso = $_POST["cantidad_ingreso"];
+    if ($cantidadIngreso <= 0) {
+        echo "<script>alert('La cantidad ingresada debe ser un número positivo.');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+        exit; // Detenemos la ejecución del script si hay un error
+    }
+    // Validación de la fecha
+    $fechaRegistro = $_POST["fechaRegistro"];
+    // Convertir la fecha a string si es necesario
+    $fechaRegistroString = date('Y-m-d', strtotime($fechaRegistro));
+    // Creamos la variable mensaje y mandamos el objeto a la función 
+    $mensaje = $CompraController->InsertIngreso(new Compra(
+        null,
+        $Usuario,
+        $_POST["id_proveedor"],
+        $_POST["idproducto"],
+        $fechaRegistroString, // Usamos la fecha convertida
+        $cantidadIngreso
+    ));
+
+    // Suponiendo que $mensaje contiene el resultado de la inserción
+    if (!empty($mensaje)) {
+        echo "<script>alert('$mensaje');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+    } else {
+        echo "<script>alert('Error al registrar el ingreso');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+    }
+}
 ?>
+<style>
+    /* Estilo para el campo readonly */
+    input[readonly] {
+        background-color: #283038 !important; /* Color de fondo normal */
+        color: #fff !important; /* Color del texto normal */
+    }
+</style>
 <div class="page-header">
     <h3 class="page-title"> Ingreso de Productos</h3>
     <nav aria-label="breadcrumb">
@@ -20,34 +61,38 @@ $productoController = new ProductoController();
                 <p class="card-description"> Ingrese la información </p>
                 <!-- Aqui esta el formulario para registar la compra -->
                 <form class="forms-sample" method="post" enctype="multipart/form-data">
-                <!-- Inputs que guardan el id del usuario y del producto -->
-                    <input type="hidden" value="<?php echo $Usuario ?>" id="IdUsuario" name="IdUsuario">
+                    <!-- Inputs que guardan el id del usuario y del producto -->
                     <input type="hidden" id="idproducto" name="idproducto">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Elemento Ingresado</label> <br>
-                        <button type='button' class='btn btn-primary' onclick='openmodalSeleccion()'>
-                            Listar <i class='mdi mdi-format-list-bulleted-type'></i>
-                        </button>
-                        <br>
-                        <input name="nombre" type="text" class="form-control" placeholder="Producto Seleccionado a Registrar" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleTextarea1">Cantidad Ingresada</label>
-                        <input type="number" class="form-control" name="cantidad_ingreso" min="1" placeholder="Cantidad Ingresada" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleTextarea1">Proveedor</label>
-                        <div>
-                            <select class="form-control" name="id_proveedor" required>
-                                <option selected>Seleccionar Proveedor</option>
-                                <?php foreach ($Prove as $fila_prove) {
-                                    echo "<option value='" . $fila_prove->getIdProveedor() . "'>" . $fila_prove->getNombre() . "</option>";
-                                } ?>
-                            </select>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="nombreProducto" placeholder="Producto Seleccionado..." aria-describedby="button-addon2" readonly>
+                            <!-- Abre el modal del listado de productos -->
+                            <button type='button' class='btn btn-primary' onclick='openmodalSeleccion()'>
+                                Listar <i class='mdi mdi-format-list-bulleted-type'></i>
+                            </button>
+                            <br>
                         </div>
-                    </div>
-                    <button name="agregar" type="submit" class="btn btn-primary mr-2" id="btnAgregar">Agregar</button>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Fecha Ingreso</label>
+                            <input type="date" class="form-control" name="cantidad_ingreso" min="1" placeholder="Cantidad Ingresada" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Cantidad Ingresada</label>
+                            <input type="number" class="form-control" name="cantidad_ingreso" min="1" placeholder="Cantidad Ingresada" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Proveedor</label>
+                            <div>
+                                <select class="form-control" name="id_proveedor" required>
+                                    <option selected>Seleccionar Proveedor</option>
+                                    <?php foreach ($Prove as $fila_prove) {
+                                        echo "<option value='" . $fila_prove->getIdProveedor() . "'>" . $fila_prove->getNombre() . "</option>";
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <button name="agregar" type="submit" class="btn btn-primary mr-2" id="btnAgregar">Agregar</button>
                 </form>
             </div>
         </div>
@@ -60,10 +105,12 @@ $productoController = new ProductoController();
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Seleccionar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <table id="tablaProductos" class="table table-striped table-hover table-borderless">
+                <table id="tablaProductos" class="table">
                     <thead>
                         <tr>
                             <th class="text-center">Nombre Producto</th>
@@ -75,17 +122,14 @@ $productoController = new ProductoController();
                             <tr>
                                 <td class="text-center"><?= htmlspecialchars($fila_producto->getNombre()) ?></td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-dark agregar-herramienta" data-id="<?= htmlspecialchars($fila_producto->getIdProducto()) ?>" data-nombre="<?= htmlspecialchars($fila_producto->getNombre()) ?>">
-                                        <i class="fa-solid fa-square-plus"></i>
+                                    <button type="button" class="btn btn-dark" id="agregar-herramienta" data-id="<?= htmlspecialchars($fila_producto->getIdProducto()) ?>" data-nombre="<?= htmlspecialchars($fila_producto->getNombre()) ?>">
+                                        +
                                     </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -97,35 +141,14 @@ $productoController = new ProductoController();
         var modalSeleccion = new bootstrap.Modal(document.getElementById('modalSeleccion'));
         modalSeleccion.show();
     }
-    $(document).ready(function() {
-        // Inicializar DataTable
-        $('#tablaProductos').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-            }
-        });
-
-        // Agregar evento click a los botones de agregar
-        $('.agregar-herramienta').on('click', function() {
-            var idProducto = $(this).data('id');
-            var nombreProducto = $(this).data('nombre');
-
-            // Establecer el ID del producto en el campo oculto
-            $('#idproducto').val(idProducto);
-
-            // Mostrar el nombre del producto en el botón o en otra etiqueta
-            $('#btnListaCompleta').html('Producto Seleccionado: ' + nombreProducto + ' <i class="fa-solid fa-list-check"></i>');
-
-            // Cerrar el modal
-            $('#modalSeleccion').modal('hide');
-        });
-
-        $('#btnAgregar').on('click', function(e) {
-            if ($('#idproducto').val() === '') {
-                e.preventDefault();
-                alert('Por favor, selecciona un producto antes de agregar.');
-            }
-        });
-
+    // Delegar el evento click a los botones de agregar
+    $(document).on('click', '.btn-dark', function() {
+        var idProducto = $(this).data('id');
+        var nombreProducto = $(this).data('nombre');
+        // Establecer el ID del producto en el campo oculto
+        $('#idproducto').val(idProducto);
+        $('#nombreProducto').val(nombreProducto); // Mostrar el nombre en el input
+        // Cerrar el modal
+        $('#modalSeleccion').modal('hide');
     });
 </script>
