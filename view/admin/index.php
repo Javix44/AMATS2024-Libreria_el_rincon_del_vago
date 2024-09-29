@@ -104,7 +104,7 @@
     </div>
     <!-- Cargar jQuery primero -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
     <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>
     <script src="template/assets/vendors/chart.js/Chart.min.js"></script>
