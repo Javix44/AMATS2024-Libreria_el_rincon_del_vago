@@ -13,8 +13,8 @@ class CompraController extends Connection
         $mensaje = "";
         //Consulta de Insercion
         $sql_insertar = "
-        INSERT INTO ingresos 
-        (idUsuario, idproducto, cantidad_ingreso, idproveedor)
+        INSERT INTO Compra 
+        (IdUsuario, IdProveedor, IdProducto, Cantidad)
         VALUES (?, ?, ?, ?)
         ";
         // Preparamos la consulta
@@ -23,9 +23,9 @@ class CompraController extends Connection
         $stmt_insertar->bind_param(
             "iiii",
             $idUsuario,
+            $idproveedor,
             $idproducto,
-            $cantidad_ingreso,
-            $idproveedor
+            $cantidad_ingreso
         );
 
         // Ejecutamos la consulta
@@ -51,8 +51,8 @@ class CompraController extends Connection
         $resultado = array();
 
         $sql = "
-        SELECT I.Id_ingreso, U.nombre as Nombre_Usuario, I.fecha_ingreso, P.Nombre as Nombre_Proveedor, I.cantidad_ingreso, Pr.Nombre as Nombre_Producto
-        FROM ingresos I JOIN usuario U ON I.IdUsuario = U.IdUsuario
+        SELECT I.IdCompra, U.nombre AS Nombre_Usuario, P.Nombre AS Nombre_Proveedor, Pr.Nombre AS Nombre_Producto, I.fechaRegistro, I.cantidad
+        FROM Compra I JOIN usuario U ON I.IdUsuario = U.IdUsuario
         JOIN producto P ON I.idproducto = P.IdProducto
         JOIN proveedor Pr ON I.idproveedor = Pr.IdProveedor";
         $stm = $this->prepareStatement($sql);
@@ -62,12 +62,12 @@ class CompraController extends Connection
 
         while ($fila = $rs->fetch_assoc()) {
             $resultado[] = new Compra(
-                $fila['Id_ingreso'],
+                $fila['IdCompra'],
                 $fila['Nombre_Usuario'],
                 $fila['Nombre_Proveedor'],
                 $fila['Nombre_Producto'],
-                $fila['fecha_ingreso'],
-                $fila['cantidad_ingreso']
+                $fila['fechaRegistro'],
+                $fila['cantidad']
             );
         }
         return $resultado;
