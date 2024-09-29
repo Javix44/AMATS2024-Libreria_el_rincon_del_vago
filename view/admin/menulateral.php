@@ -85,7 +85,7 @@
                 <span class="menu-title">Productos</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic2">
+            <div class="collapse" id="productos">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="agregarproducto">Agregar Productos</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ver Stock</a></li>
