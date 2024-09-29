@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h3 class="page-title"> Productos </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="listacategorias">Ver Stock</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Administrar Productos</li>
+        </ol>
+    </nav>
+</div>
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -33,10 +42,10 @@
                         </select>
                     </div>
                     <!-- Campo para ingresar el stock -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputStock">Stock</label>
                         <input name="stock" type="number" class="form-control" id="inputStock" placeholder="Ingrese el stock disponible" required>
-                    </div>
+                    </div> -->
                     <!-- Campo para ingresar el umbral -->
                     <div class="form-group">
                         <label for="inputUmbral">Umbral</label>
@@ -53,14 +62,14 @@
                         <input name="precioVenta" type="number" step="0.01" class="form-control" id="inputPrecioVenta" placeholder="Ingrese el precio de venta" required>
                     </div>
                     <!-- Select para seleccionar el estado (activo o inactivo) -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="selectEstado">Estado</label>
                         <select name="estado" class="form-control" id="selectEstado" required>
                             <option value="">Seleccione el estado</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>
-                    </div>
+                    </div> -->
                     <!-- Botones para agregar o cancelar -->
                     <button name="registrarProducto" type="submit" class="btn btn-primary mr-2">Registrar Producto</button>
                     <button type="reset" class="btn btn-dark">Cancelar</button>
