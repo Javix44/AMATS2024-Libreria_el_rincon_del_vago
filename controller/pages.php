@@ -49,6 +49,10 @@ class Pages
                 return "view/admin/consultas/listacategorias.php";
             case "stock":
                 return "view/cajero/consultas/stock.php";
+            case "ingresoproducto":
+                return "view/admin/form/agregarcompra.php";
+            case "verregistro":
+                return "view/admin/consultas/listaingresos.php";
             default:
                 return "view/e404.php";
         }

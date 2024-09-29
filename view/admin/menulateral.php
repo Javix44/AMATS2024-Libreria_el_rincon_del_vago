@@ -92,6 +92,22 @@
                 </ul>
             </div>
         </li>
+        <!--Menu de Compras-->
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#Ingresos" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-package-variant-closed"></i>
+                </span>
+                <span class="menu-title">Ingresos</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Ingresos">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="ingresoproducto">Registrar Ingresos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="verregistro">Ver Registro</a></li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item menu-items">
             <a class="nav-link" href="pages/tables/basic-table.html">
                 <span class="menu-icon">

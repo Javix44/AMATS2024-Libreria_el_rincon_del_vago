@@ -184,4 +184,25 @@ class ProductoController extends Connection
         $stmt->close();
         return $mensaje;
     }
+
+    public function Busqueda_Productos($Buscar)
+    {
+        $sql = "
+        SELECT IdProducto AS Id, Nombre FROM Producto
+        WHERE Nombre LIKE '%" . $Buscar . "%' AND Disponibilidad_H = 1
+        ";
+
+        $rs = $this->ejecutarSQL($sql);
+
+        $Datos = array();
+        while ($row = $rs->fetch_assoc()) {
+            $Datos[] = new Producto(
+                $row['IdProducto'],
+                null,
+                $row['Nombre']
+            );
+        }
+
+        return $Datos;
+    }
 }

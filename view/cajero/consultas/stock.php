@@ -8,16 +8,16 @@ if (isset($_POST["actualizar"])) {
     $mensaje = "";
     // Asegúrate de que estás utilizando la clase correcta, en este caso Producto
     $mensaje = $productoController->UpdateProducto(new Producto(
-        $_POST["id"], 
-        null,           
-        $_POST["nombre"],           
-        $_POST["descripcion"],      
-        new Categoria($_POST["categoria"]),        
-        null,           
-        $_POST["umbral"],           
-        $_POST["precioCompra"],      
-        $_POST["precioVenta"],     
-        $_POST["estado"]           
+        $_POST["id"],
+        null,
+        $_POST["nombre"],
+        $_POST["descripcion"],
+        new Categoria($_POST["categoria"]),
+        null,
+        $_POST["umbral"],
+        $_POST["precioCompra"],
+        $_POST["precioVenta"],
+        $_POST["estado"]
     ));
 
     // Verificamos el resultado de la actualización
@@ -146,13 +146,13 @@ onclick='openEditModal(" . $pro->getIdProducto() . ",
                         <label for="editNombre">Nombre</label>
                         <input name="nombre" type="text" class="form-control" id="editNombre" placeholder="Ingrese el nombre del producto" required>
                     </div>
-                    
+
                     <!-- Campo para ingresar la descripción -->
                     <div class="form-group">
                         <label for="editDescripcion">Descripción</label>
                         <textarea name="descripcion" class="form-control" id="editDescripcion" rows="3" placeholder="Ingrese la descripción del producto" required></textarea>
                     </div>
-                    
+
                     <!-- Select para elegir la categoría -->
                     <div class="form-group">
                         <label for="selectCategoria">Seleccione la categoría</label>
@@ -165,19 +165,19 @@ onclick='openEditModal(" . $pro->getIdProducto() . ",
                             ?>
                         </select>
                     </div>
-                    
+
                     <!-- Campo para ingresar el umbral -->
                     <div class="form-group">
                         <label for="editUmbral">Umbral</label>
                         <input name="umbral" type="number" class="form-control" id="editUmbral" placeholder="Ingrese el umbral mínimo" required>
                     </div>
-                    
+
                     <!-- Campo para ingresar el precio de compra -->
                     <div class="form-group">
                         <label for="editPrecioCompra">Precio de Compra</label>
                         <input name="precioCompra" type="number" step="0.01" class="form-control" id="editPrecioCompra" placeholder="Ingrese el precio de compra" required>
                     </div>
-                    
+
                     <!-- Campo para ingresar el precio de venta -->
                     <div class="form-group">
                         <label for="editPrecioVenta">Precio de Venta</label>
@@ -193,7 +193,7 @@ onclick='openEditModal(" . $pro->getIdProducto() . ",
                             <option value='0'>Inactivo</option>
                         </select>
                     </div>
-                    
+
                     <button name="actualizar" type="submit" class="btn btn-primary mr-2">Actualizar</button>
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
                 </form>
@@ -215,7 +215,7 @@ onclick='openEditModal(" . $pro->getIdProducto() . ",
         });
     });
 
-    function openEditModal(id, nombre, descripcion, idcategoria,umbral, precioCompra, precioVenta,estado) {
+    function openEditModal(id, nombre, descripcion, idcategoria, umbral, precioCompra, precioVenta, estado) {
         document.getElementById('editId').value = id;
         document.getElementById('editNombre').value = nombre;
         document.getElementById('editDescripcion').value = descripcion;
