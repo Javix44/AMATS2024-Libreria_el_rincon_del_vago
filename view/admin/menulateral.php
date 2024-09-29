@@ -78,7 +78,7 @@
         </li>
         <!--Menu de productos-->
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#productos" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                     <i class="mdi mdi-package-variant-closed"></i>
                 </span>
