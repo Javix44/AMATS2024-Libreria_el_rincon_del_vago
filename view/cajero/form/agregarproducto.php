@@ -72,17 +72,17 @@ if (isset($_POST["agregar"])) {
                 <form class="forms-sample" method="post">
                     <!-- Campo para ingresar el nombre -->
                     <div class="form-group">
-                        <label for="inputNombre">Nombre</label>
+                        <label for="inputNombre">Nombre *</label>
                         <input name="nombre" type="text" class="form-control" id="inputNombre" placeholder="Ingrese el nombre del producto" required>
                     </div>
                     <!-- Campo para ingresar la descripción -->
                     <div class="form-group">
-                        <label for="inputDescripcion">Descripción</label>
+                        <label for="inputDescripcion">Descripción *</label>
                         <textarea name="descripcion" class="form-control" id="inputDescripcion" rows="3" placeholder="Ingrese la descripción del producto" required></textarea>
                     </div>
                     <!-- Select para elegir la categoría -->
                     <div class="form-group">
-                        <label for="selectCategoria">Seleccione la categoría</label>
+                        <label for="selectCategoria">Seleccione la categoría *</label>
                         <select name="categoria" class="form-control" id="selectCategoria" required>
                             <option value=''>Seleccione una categoría</option>
                             <?php
@@ -95,17 +95,17 @@ if (isset($_POST["agregar"])) {
                     </div>
                     <!-- Campo para ingresar el umbral -->
                     <div class="form-group">
-                        <label for="inputUmbral">Umbral</label>
+                        <label for="inputUmbral">Umbral *</label>
                         <input name="umbral" type="number" class="form-control" id="inputUmbral" placeholder="Ingrese el umbral mínimo" required>
                     </div>
                     <!-- Campo para ingresar el precio de compra -->
                     <div class="form-group">
-                        <label for="inputPrecioCompra">Precio de Compra</label>
+                        <label for="inputPrecioCompra">Precio de Compra *</label>
                         <input name="precioCompra" type="number" step="0.01" class="form-control" id="inputPrecioCompra" placeholder="Ingrese el precio de compra" required>
                     </div>
                     <!-- Campo para ingresar el precio de venta -->
                     <div class="form-group">
-                        <label for="inputPrecioVenta">Precio de Venta</label>
+                        <label for="inputPrecioVenta">Precio de Venta *</label>
                         <input name="precioVenta" type="number" step="0.01" class="form-control" id="inputPrecioVenta" placeholder="Ingrese el precio de venta" required>
                     </div>
                     <!-- Botones para agregar o cancelar -->
