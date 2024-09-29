@@ -34,7 +34,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="false" aria-controls="usuarios">
                 <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
+                    <i class="mdi mdi-account-multiple"></i>
                 </span>
                 <span class="menu-title">Usuarios</span>
                 <i class="menu-arrow"></i>
@@ -49,7 +49,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#proveedores" aria-expanded="false" aria-controls="proveedores">
                 <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
+                    <i class="mdi mdi-briefcase"></i>
                 </span>
                 <span class="menu-title">Proveedores</span>
                 <i class="menu-arrow"></i>
@@ -64,7 +64,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#categorias" aria-expanded="false" aria-controls="categorias">
                 <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
+                    <i class="mdi mdi-view-list"></i>
                 </span>
                 <span class="menu-title">Categorias</span>
                 <i class="menu-arrow"></i>
