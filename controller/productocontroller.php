@@ -22,11 +22,11 @@ class ProductoController extends Connection
             $Datos[] = new Producto(
                 null,
                 null,
-                $row["nombre"],
+                $row["Nombre"],
                 null,
                 null,
-                $row["stock"],
-                $row["umbral"],
+                $row["Cantidad_Actual"],
+                $row["Umbral"],
                 null,
                 null,
                 null

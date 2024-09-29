@@ -57,7 +57,7 @@
                         $resultados_admin = $ProductoController->Stock_Minimo();
                     ?>
                         <div class="container mt-5">
-                            <h2 class="text-center">Existencias de Material Gastable Bajas</h2>
+                            <h2 class="text-center">Registro de Existencias de Productos Bajos</h2>
                             <table class="table table-striped table-hover table-borderless table-dark align-middle">
                                 <thead>
                                     <tr>
