@@ -116,7 +116,7 @@ if (isset($_POST["agregar"])) {
                             <tr>
                                 <td class="text-center"><?= htmlspecialchars($fila_producto->getNombre()) ?></td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-dark" id="agregar-herramienta" data-id="<?= htmlspecialchars($fila_producto->getIdProducto()) ?>" data-nombre="<?= htmlspecialchars($fila_producto->getNombre()) ?>">
+                                    <button type="button" class="btn btn-dark" id="seleccionar" data-id="<?= htmlspecialchars($fila_producto->getIdProducto()) ?>" data-nombre="<?= htmlspecialchars($fila_producto->getNombre()) ?>">
                                         +
                                     </button>
                                 </td>
@@ -128,7 +128,7 @@ if (isset($_POST["agregar"])) {
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#tablaProductos').DataTable({
@@ -142,11 +142,20 @@ if (isset($_POST["agregar"])) {
         $('#modalSeleccion').modal('show');
     }
 
-    $(document).on('click', '.btn-dark', function() {
+    $(document).on('click', '#seleccionar', function() {
         var idProducto = $(this).data('id');
         var nombreProducto = $(this).data('nombre');
         $('#idproducto').val(idProducto);
         $('#nombreProducto').val(nombreProducto);
         $('#modalSeleccion').modal('hide');
+    });
+
+    document.getElementById('btnAgregar').addEventListener('click', function(event) {
+        var nombreProducto = document.getElementById('nombreProducto').value;
+
+        if (nombreProducto === "") {
+            event.preventDefault(); // Evita que el formulario se envíe
+            alert("Por favor, selecciona un producto antes de agregar.");
+        }
     });
 </script>
