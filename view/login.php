@@ -3,9 +3,8 @@ $UsuarioController = new UsuarioController;
 if (isset($_POST["ok"])) {
     if (!empty($_POST["username"]) && !empty($_POST["clave"])) {
         $Usuario = new Usuario("", "", $_POST["username"], $_POST["clave"], "", "", "");
-
-        $_SESSION["login"] = $_POST["username"];
         $resultado = $UsuarioController->login($Usuario);
+        $_SESSION["login"] = $_POST["username"];
         if (empty($resultado)) {
             echo "<div class='alert alert-danger fixed-alert text-center' role='alert'>
                     <strong>Datos Incorrectos, vuelva a Intentarlo</strong>
@@ -14,10 +13,10 @@ if (isset($_POST["ok"])) {
             foreach ($resultado as $Fila) {
                 if ($Fila->getEstado() == "1") {
                     if ($Fila->getEsAdmin() == "1") {
-                        $_SESSION["nivel"] = "admin";
+                        $_SESSION["nivel"] = "Administrador";
                         echo "<script>window.location.href = '';</script>";
                     } else {
-                        $_SESSION["nivel"] = "cajero";
+                        $_SESSION["nivel"] = "Cajero";
                         echo "<script>window.location.href = '';</script>";
                     }
                 } else {
@@ -40,7 +39,8 @@ if (isset($_POST["ok"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Login Form</title>
+    <title>Libreria | Rincon del Estudiante</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URL ?>resources/img/libro-abierto.png">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->

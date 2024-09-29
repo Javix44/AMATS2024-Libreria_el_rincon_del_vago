@@ -13,9 +13,9 @@ class Pages
         //por el momneto cambien el nombre de la seccion usuario por login
         //necesito seccion usuario se guarde todos los datos de la base de datos, nombre, id, correo, etc.
         if (isset($_SESSION["login"])) {
-            if ($_SESSION["nivel"] == "admin") {
+            if ($_SESSION["nivel"] == "Administrador") {
                 $pagina = $this->CargarVistaAdmin($url);
-            } else if ($_SESSION["nivel"] == "cajero") {
+            } else if ($_SESSION["nivel"] == "Cajero") {
                 $pagina = $this->CargarVistaCajero($url);
             }
         } else {

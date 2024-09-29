@@ -20,11 +20,11 @@ class UsuarioController extends Connection
 
         while ($fila = $rs_alumno->fetch_assoc()) {
             $resultado[] = new Usuario(
-                null,
-                null,
+                $fila["IdUsuario"],
+                $fila["Nombre"],
                 $fila["NombreUsu"],
                 $fila["Clave"],
-                null,
+                $fila["Correo"],
                 $fila["EsAdmin"],
                 $fila["Estado"]
             );
@@ -198,5 +198,20 @@ class UsuarioController extends Connection
         }
         $stmt->close();
         return $mensaje;
+    }
+
+    //funcion para Obtener Nombre
+    public function ObtenerNombre($nomUsu)
+    {
+        $sql = "Select Nombre from usuario WHERE NombreUsu = " . $nomUsu . " ";
+        // Ejecutar la consulta
+        $result = $this->ejecutarSQL($sql);
+
+        // Verificar si se obtuvo algún resultado
+        if ($result && $fila = $result->fetch_assoc()) {
+            return $fila['Nombre']; // Retornar el nombre
+        } else {
+            return null; // O retornar null si no se encuentra el usuario
+        }
     }
 }

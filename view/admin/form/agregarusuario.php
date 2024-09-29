@@ -27,7 +27,7 @@ if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
 
 ?>
 <div class="page-header">
-    <h3 class="page-title"> Usuarios </h3>
+    <h3 class="page-title">Usuarios</h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="listausuarios">Ver Usuarios</a></li>
@@ -72,7 +72,6 @@ if (isset($_POST["agregar"]) && $_POST["pass"] == $_POST["pass2"]) {
                         <input name="pass2" type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Confirmar clave" required>
                     </div>
                     <button name="agregar" type="submit" class="btn btn-primary mr-2">Agregar</button>
-                    <button class="btn btn-dark">Cancel</button>
                 </form>
             </div>
         </div>

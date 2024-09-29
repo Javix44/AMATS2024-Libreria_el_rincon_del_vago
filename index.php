@@ -22,9 +22,9 @@ require_once('controller/usuariocontroller.php');
 require_once('controller/ventacontroller.php');
 
 if (isset($_SESSION["nivel"])) {
-    if ($_SESSION["nivel"] == "admin") {
+    if ($_SESSION["nivel"] == "Administrador") {
         require_once("view/admin/index.php");
-    } elseif ($_SESSION["nivel"] == "cajero") {
+    } elseif ($_SESSION["nivel"] == "Cajero") {
         require_once("view/cajero/index.php");
     }
 } else {

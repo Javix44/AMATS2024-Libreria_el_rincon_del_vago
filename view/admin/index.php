@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Rincon del Estudiante | Admin </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="template/assets/vendors/css/vendor.bundle.base.css">
@@ -29,7 +29,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="template/assets/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URL ?>resources/img/libro-abierto.png">
 </head>
 
 <body>
@@ -49,6 +49,51 @@
                     //por el momento no hay secciones creadas
                     $pages = new Pages();
                     require_once($pages->ViewPage());
+
+                    $url = isset($_GET["url"]) ? $_GET["url"] : null;
+                    $url = explode('/', $url);
+                    if ($url[0] == "index.html") {
+                        $ProductoController = new ProductoController();
+                        $resultados_admin = $ProductoController->Stock_Minimo();
+                    ?>
+                        <div class="container mt-5">
+                            <h2 class="text-center">Existencias de Material Gastable Bajas</h2>
+                            <table class="table table-striped table-hover table-borderless table-dark align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Cantidad Actual</th>
+                                        <th class="text-center">Stock Mínimo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <?php
+                                    if ($resultados_admin == NULL) {
+                                    ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center">
+                                                <div class="alert alert-info" role="alert">
+                                                    <strong>Existencias de Productos Suficientes</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    } else {
+                                        foreach ($resultados_admin as $fila) {
+                                        ?>
+                                            <tr>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getNombre()) ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getStock()) ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getUmbral()) ?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php }
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->

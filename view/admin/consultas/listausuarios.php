@@ -62,12 +62,12 @@ $listaUsuarios = $usuarioController->ShowUsuarios();
                     <table id="table" class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Nombre Usuario</th>
-                                <th>Correo</th>
-                                <th>Cargo</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Nombre Usuario</th>
+                                <th class="text-center">Correo</th>
+                                <th class="text-center">Cargo</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

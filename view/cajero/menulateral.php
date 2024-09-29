@@ -1,3 +1,15 @@
+<style>
+    .profile-name h5 {
+        white-space: normal;
+        /* Allows text to wrap */
+        word-wrap: break-word;
+        /* Breaks long words */
+        overflow-wrap: break-word;
+        /* For better support in some browsers */
+        max-width: 150px;
+        /* Adjust as needed to fit your design */
+    }
+</style>
 <!-- menu izquierdo -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -13,9 +25,18 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Julissa Diaz</h5>
-                        <span>Pruebas</span>
+                        <!-- Agregue los Datos del Usuario que Inicia Sesión -->
+                        <?php
+                        $UsuarioController = new UsuarioController();
+                        $_SESSION["Nombre"] = $nombreUsuario = $UsuarioController->ObtenerNombre($_SESSION["login"]);
+                        $nivelUsuario = $_SESSION["nivel"];
+                        ?>
+                        <h5 class='mb-0 font-weight-normal' style="white-space: normal; word-wrap: break-word;"><?= $nombreUsuario ?></h5> <!-- Mostrar el nombre del usuario -->
+                        <span>
+                            <?= $nivelUsuario; ?> <!-- Mostrar el rol del usuario -->
+                        </span>
                     </div>
+
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                 <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
@@ -77,7 +98,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="agregarventa">Registrar una Venta</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ventas Realizadas</a></li>
-                    
+
                 </ul>
             </div>
         </li>
@@ -95,7 +116,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="agregarproducto">Agregar Productos</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ver Stock</a></li>
-                    
+
                 </ul>
             </div>
         </li>
@@ -113,11 +134,11 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Reporte de Ventas</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Reporte Ingreso Productos</a></li>
-                    
+
                 </ul>
             </div>
         </li>
 
 
-       
+
 </nav>

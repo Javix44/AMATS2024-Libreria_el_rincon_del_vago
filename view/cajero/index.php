@@ -25,7 +25,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="template/assets/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URL ?>resources/img/libro-abierto.png">
 </head>
 
 <body>
