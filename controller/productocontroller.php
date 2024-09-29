@@ -7,14 +7,8 @@ class ProductoController extends Connection
     public function Stock_Minimo()
     {
         $sql = "
-        SELECT  Nombre,
-            Stock AS Cantidad_Actual, 
-            Umbral
-        FROM 
-            producto
-        WHERE Stock < Umbral
-        ORDER BY Cantidad_Actual ASC
-        LIMIT 10
+        SELECT  Nombre, Stock AS Cantidad_Actual, Umbral FROM producto 
+        WHERE Stock < Umbral ORDER BY Cantidad_Actual ASC LIMIT 10
         ";
         $rs = $this->ejecutarSQL($sql);
         $Datos = array();
@@ -61,7 +55,7 @@ class ProductoController extends Connection
         }
 
         // Si no existe, hacemos la inserción SQL
-        $sql_insertar = "INSERT INTO producto (Codigo,Nombre, Descripcion, IdCategoria, Umbral, PrecioCompra,PrecioVenta) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql_insertar = "INSERT INTO producto (Codigo, Nombre, Descripcion, IdCategoria, Stock, Umbral, PrecioCompra,PrecioVenta) VALUES (?, ?, ?, ?, 0 , ?, ?, ?)";
 
         // Preparamos la consulta
         $stmt_insertar = $this->prepareStatement($sql_insertar);
@@ -100,7 +94,7 @@ class ProductoController extends Connection
 
         $resultado = array();
 
-        $sql = "SELECT * FROM producto";
+        $sql = "SELECT p.IdProducto, p.Codigo, p.Nombre, p.Descripcion, p.Stock, p.Umbral, p.PrecioCompra, p.PrecioVenta,p.Estado, p.IdCategoria, c.Nombre AS NombreCategoria FROM Producto p JOIN Categoria c ON p.IdCategoria = c.IdCategoria;";
         $stm = $this->prepareStatement($sql);
         $stm->execute();
 
@@ -114,7 +108,7 @@ class ProductoController extends Connection
                 $fila['Descripcion'],
                 new Categoria(
                     $fila['IdCategoria'],
-                    $fila['Nombre']
+                    $fila['NombreCategoria']
                 ),
                 $fila['Stock'],
                 $fila['Umbral'],
@@ -127,11 +121,10 @@ class ProductoController extends Connection
     }
 
     //funcion para actualizar producto
-    public function UpdateUsuario($producto)
+    public function UpdateProducto($producto)
     {
         // Obtenemos los valores del objeto
         $idProducto = $producto->getIdProducto();
-        $codigo = $producto->getCodigo();
         $nombre = $producto->getNombre();
         $descripcion = $producto->getDescripcion();
         $idCategoria = $producto->getCategoria()->getIdCategoria();
@@ -141,19 +134,7 @@ class ProductoController extends Connection
         $estado = $producto->getEstado();
         $mensaje = "";
 
-        // Verificar si el nombre de usuario ya existe
-        $sqlVerificar = "SELECT COUNT(*) as total FROM producto WHERE Codigo = ? AND IdProducto != ?";
-        $stmtVerificar = $this->prepareStatement($sqlVerificar);
-        $stmtVerificar->bind_param("si", $codigo, $idCategoria);
-        $stmtVerificar->execute();
-        $resultadoVerificar = $stmtVerificar->get_result()->fetch_assoc();
-
-        if ($resultadoVerificar['total'] > 0) {
-            // El nombre de usuario ya existe, devolver un mensaje de error
-            return "El nombre de usuario ya está registrado.";
-        }
-
-        $sql = "UPDATE producto SET Codigo = ?, Nombre = ?, Descripcion = ?, IdCategoria = ?,
+        $sql = "UPDATE producto SET  Nombre = ?, Descripcion = ?, IdCategoria = ?,
         Umbral = ?, PrecioCompra = ? , PrecioVenta = ?, Estado = ?  WHERE IdProducto = ?";
 
         // Preparamos la consulta
@@ -161,15 +142,15 @@ class ProductoController extends Connection
 
         // Asociamos los parámetros a la consulta
         $stmt->bind_param(
-            "sssiiddi",
-            $codigo,
+            "ssiiddii",
             $nombre,
             $descripcion,
             $idCategoria,
             $umbral,
             $precioCompra,
             $precioVenta,
-            $estado
+            $estado,
+            $idProducto
         );
 
         // Ejecutamos la consulta

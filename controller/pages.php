@@ -47,6 +47,8 @@ class Pages
                 return "view/admin/consultas/listaproveedores.php";
             case "listacategorias":
                 return "view/admin/consultas/listacategorias.php";
+            case "stock":
+                return "view/cajero/consultas/stock.php";
             default:
                 return "view/e404.php";
         }
@@ -64,6 +66,8 @@ class Pages
                 return "view/cajero/form/agregarventa.php";
             case "agregarproducto":
                 return "view/cajero/form/agregarproducto.php";
+            case "stock":
+                return "view/cajero/consultas/stock.php";
             default:
                 return "view/e404.php";
         }
