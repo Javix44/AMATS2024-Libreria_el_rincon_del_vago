@@ -31,18 +31,22 @@ class Pages
         switch ($url[0]) {
             case "":
                 return "view/admin/inicio.php";
+            case "inicio":
+                return "view/admin/inicio.php";
             case "agregarusuario":
                 return "view/admin/form/agregarusuario.php";
             case "agregarproveedores":
                 return "view/admin/form/agregarproveedores.php";
-                case "agregarcategorias":
-                    return "view/admin/form/agregarcategoria.php";
+            case "agregarcategorias":
+                return "view/admin/form/agregarcategoria.php";
+            case "agregarproducto":
+                return "view/cajero/form/agregarproducto.php";
             case "listausuarios":
                 return "view/admin/consultas/listausuarios.php";
             case "listaproveedores":
                 return "view/admin/consultas/listaproveedores.php";
-                case "listacategorias":
-                    return "view/admin/consultas/listacategorias.php";
+            case "listacategorias":
+                return "view/admin/consultas/listacategorias.php";
             default:
                 return "view/e404.php";
         }
@@ -57,11 +61,11 @@ class Pages
             case "inicio":
                 return "view/cajero/inicio.php";
             case "agregarventa":
-                    return "view/cajero/form/agregarventa.php";
-                    case "agregarproducto":
-                        return "view/cajero/form/agregarproducto.php";
+                return "view/cajero/form/agregarventa.php";
+            case "agregarproducto":
+                return "view/cajero/form/agregarproducto.php";
             default:
-                return "view/e404.php";
+                return "view/e404.php";;
         }
     }
 }
