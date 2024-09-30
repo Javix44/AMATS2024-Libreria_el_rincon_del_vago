@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona cajero</title>
+    <title>Rincon del Estudiante | Admin </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="template/assets/vendors/css/vendor.bundle.base.css">
@@ -19,6 +19,10 @@
     <!-- plugins para los formularios -->
     <link rel="stylesheet" href="template/assets/vendors/select2/select2.min.css">
     <link rel="stylesheet" href="template/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -26,6 +30,9 @@
     <link rel="stylesheet" href="template/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URL ?>resources/img/libro-abierto.png">
+
+    <!-- Cargar jQuery primero -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -46,7 +53,7 @@
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
-                    //por el momento no hay secciones creadas
+                    
                     $pages = new Pages();
                     require_once($pages->ViewPage());
                     ?>
@@ -59,34 +66,32 @@
             <!-- main-panel ends -->
         </div>
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
     <script src="template/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="template/assets/vendors/progressbar.js/progressbar.min.js"></script>
     <script src="template/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="template/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <script src="template/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+
     <!-- plugins para formularios -->
     <script src="template/assets/vendors/select2/select2.min.js"></script>
     <script src="template/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
+
+    <!-- Inicializar DataTables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Archivos personalizados -->
     <script src="template/assets/js/off-canvas.js"></script>
     <script src="template/assets/js/hoverable-collapse.js"></script>
     <script src="template/assets/js/misc.js"></script>
     <script src="template/assets/js/settings.js"></script>
     <script src="template/assets/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
     <script src="template/assets/js/dashboard.js"></script>
-    <!-- Custom para formularios -->
     <script src="template/assets/js/file-upload.js"></script>
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
-    <!-- End custom js for this page -->
 </body>
 
 </html>
