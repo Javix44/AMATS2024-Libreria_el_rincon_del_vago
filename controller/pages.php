@@ -41,6 +41,8 @@ class Pages
                 return "view/admin/form/agregarcategoria.php";
             case "agregarproducto":
                 return "view/cajero/form/agregarproducto.php";
+            case "agregarventa":
+                return "view/cajero/form/agregarventa.php";
             case "listausuarios":
                 return "view/admin/consultas/listausuarios.php";
             case "listaproveedores":
@@ -53,6 +55,8 @@ class Pages
                 return "view/admin/form/agregarcompra.php";
             case "listaingresos":
                 return "view/admin/consultas/listaingresos.php";
+            case "listaventa":
+                return "view/cajero/consultas/listaventa.php";
             default:
                 return "view/e404.php";
         }

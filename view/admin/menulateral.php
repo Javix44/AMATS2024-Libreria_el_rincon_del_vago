@@ -94,17 +94,33 @@
         </li>
         <!--Menu de Compras-->
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#Ingresos" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ventas" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                     <i class="mdi mdi-package-variant-closed"></i>
                 </span>
                 <span class="menu-title">Ingresos</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="Ingresos">
+            <div class="collapse" id="ventas">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="ingresoproducto">Registrar Ingresos</a></li>
                     <li class="nav-item"> <a class="nav-link" href="listaingresos">Ver Registro</a></li>
+                </ul>
+            </div>
+        </li>
+        <!--Menu de ventas-->
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#Ingresos" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-package-variant-closed"></i>
+                </span>
+                <span class="menu-title">Ventas</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Ingresos">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="agregarventa">Venta</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="listaventa">Ver Registro</a></li>
                 </ul>
             </div>
         </li>

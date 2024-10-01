@@ -1,37 +1,53 @@
- <div class="row">
-     <div class="col-md-12 grid-margin stretch-card">
-         <div class="card">
-             <div class="card-body">
-                 <h4 class="card-title">Registrar Venta</h4>
-                 <p class="card-description">Ingrese la información de la venta</p>
-                 <!-- Aquí está el formulario para registrar una venta -->
-                 <form class="forms-sample" method="post">
-                     <!-- Select para elegir el producto -->
-                     <div class="form-group">
-                         <label for="selectProducto">Elija el producto</label>
-                         <select name="IdProducto" class="form-control" id="selectProducto" required>
-                             <option value="">Seleccione un producto</option>
-                             <option value="1">Producto 1</option>
-                             <option value="2">Producto 2</option>
-                             <option value="3">Producto 3</option>
-                             <!-- Añadir más productos según tu base de datos -->
-                         </select>
-                     </div>
-                     <!-- Campo para ingresar la cantidad -->
-                     <div class="form-group">
-                         <label for="inputCantidad">Cantidad</label>
-                         <input name="Cantidad" type="number" class="form-control" id="inputCantidad" placeholder="Ingrese la cantidad" required>
-                     </div>
-                     <!-- Campo para capturar la fecha de registro -->
-                     <div class="form-group">
-                         <label for="inputFechaRegistro">Fecha de Registro</label>
-                         <input name="FechaRegistro" type="date" class="form-control" id="inputFechaRegistro" required>
-                     </div>
-                     <!-- Botón para enviar el formulario -->
-                     <button name="registrarVenta" type="submit" class="btn btn-primary mr-2">Registrar Venta</button>
-                     <button type="reset" class="btn btn-dark">Cancelar</button>
-                 </form>
-             </div>
-         </div>
-     </div>
- </div>
+<?php
+//llamado controladores
+$ProveedorController = new ProveedorController();
+$Prove =  $ProveedorController->ShowProveedores();
+$productoController = new ProductoController();
+$CompraController = new CompraController();
+
+if (isset($_POST["agregar"])) {
+    // Validación de la cantidad ingresada
+    $cantidadIngreso = $_POST["cantidad_ingreso"];
+    if ($cantidadIngreso <= 0) {
+        echo "<script>alert('La cantidad ingresada debe ser un número positivo.');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+        exit; // Detenemos la ejecución del script si hay un error
+    }
+    // Creamos la variable mensaje y mandamos el objeto a la función 
+    $mensaje = $CompraController->InsertIngreso(new Compra(
+        null,
+        $Usuario,
+        $_POST["id_proveedor"],
+        $_POST["idproducto"],
+        null, // Fecha asignada por la BD automaticamente
+        $cantidadIngreso
+    ));
+
+    // Suponiendo que $mensaje contiene el resultado de la inserción
+    if (!empty($mensaje)) {
+        echo "<script>alert('$mensaje');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+    } else {
+        echo "<script>alert('Error al registrar el ingreso');</script>";
+        echo "<script>location.href='ingresoproducto';</script>";
+    }
+}
+?>
+<style>
+    /* Estilo para el campo readonly */
+    input[readonly] {
+        background-color: #283038 !important;
+        /* Color de fondo normal */
+        color: #fff !important;
+        /* Color del texto normal */
+    }
+</style>
+<div class="page-header">
+    <h3 class="page-title"> Agregar venta</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="listaventa">Ver Registros</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Ventas</li>
+        </ol>
+    </nav>
+</div>
