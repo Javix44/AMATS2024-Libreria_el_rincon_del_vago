@@ -119,7 +119,38 @@ class ProductoController extends Connection
         }
         return $resultado;
     }
+    //funcion para ver productos pero para el modal de ventas en resumen que cumpla la condicion de ser mayor a 0 y estar disponible
+    public function ShowProductos2()
+    {
 
+        $resultado = array();
+
+        $sql = "SELECT p.IdProducto, p.Codigo, p.Nombre, p.Descripcion, p.Stock, p.Umbral, p.PrecioCompra, p.PrecioVenta,p.Estado, p.IdCategoria, c.Nombre AS NombreCategoria FROM Producto p JOIN Categoria c ON p.IdCategoria = c.IdCategoria
+        where p.Stock > 0 AND p.Estado = 1";
+        $stm = $this->prepareStatement($sql);
+        $stm->execute();
+
+        $rs = $stm->get_result();
+
+        while ($fila = $rs->fetch_assoc()) {
+            $resultado[] = new Producto(
+                $fila['IdProducto'],
+                $fila['Codigo'],
+                $fila['Nombre'],
+                $fila['Descripcion'],
+                new Categoria(
+                    $fila['IdCategoria'],
+                    $fila['NombreCategoria']
+                ),
+                $fila['Stock'],
+                $fila['Umbral'],
+                $fila['PrecioCompra'],
+                $fila['PrecioVenta'],
+                $fila['Estado'],
+            );
+        }
+        return $resultado;
+    }
     //funcion para actualizar producto
     public function UpdateProducto($producto)
     {

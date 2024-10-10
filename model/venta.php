@@ -2,49 +2,57 @@
 
 class Venta {
     private $idVenta;
-    private $producto; 
     private $usuario;  
-    private $cantidad;
+    private $nombrecliente;  
+    private $correocliente;  
+    private $estado;
 
-    public function __construct($idVenta = null, $producto = null, $usuario = null, $cantidad = null) {
+    public function __construct($idVenta, $usuario, $nombrecliente, $correocliente, $estado) {
         $this->idVenta = $idVenta;
-        $this->producto = $producto; 
-        $this->usuario = $usuario;    
-        $this->cantidad = $cantidad;
+        $this->usuario = $usuario;
+        $this->nombrecliente = $nombrecliente;
+        $this->correocliente = $correocliente;
+        $this->estado = $estado;
     }
 
-    // Métodos Get
     public function getIdVenta() {
         return $this->idVenta;
     }
 
-    public function getProducto() {
-        return $this->producto; 
-    }
-
-    public function getUsuario() {
-        return $this->usuario;  
-    }
-
-    public function getCantidad() {
-        return $this->cantidad;
-    }
-
-    // Métodos Set
     public function setIdVenta($idVenta) {
         $this->idVenta = $idVenta;
     }
 
-    public function setProducto($producto) {
-        $this->producto = $producto; 
+    public function getUsuario() {
+        return $this->usuario;
     }
 
     public function setUsuario($usuario) {
-        $this->usuario = $usuario; 
+        $this->usuario = $usuario;
     }
 
-    public function setCantidad($cantidad) {
-        $this->cantidad = $cantidad;
+    public function getNombreCliente() {
+        return $this->nombrecliente;
+    }
+
+    public function setNombreCliente($nombrecliente) {
+        $this->nombrecliente = $nombrecliente;
+    }
+
+    public function getCorreoCliente() {
+        return $this->correocliente;
+    }
+
+    public function setCorreoCliente($correocliente) {
+        $this->correocliente = $correocliente;
+    }
+
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    public function setEstado($estado) {
+        $this->estado = $estado;
     }
 }
 

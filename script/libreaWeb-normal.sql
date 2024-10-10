@@ -62,10 +62,19 @@ CREATE TABLE Compra (
 -- Tabla Venta
 CREATE TABLE Venta (
     IdVenta INT AUTO_INCREMENT PRIMARY KEY,
-    IdProducto INT NOT NULL,
     IdUsuario INT NOT NULL,
-    Cantidad INT NOT NULL,
+    nombre_cliente VARCHAR (75) NOT NULL,
+    correo_cliente VARCHAR (20),
     FechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
+    estado VARCHAR,
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
+
+-- Tabla Detalle_Venta
+CREATE TABLE Detalle_Venta (
+    Id_detalle_Venta INT AUTO_INCREMENT PRIMARY KEY,
+    IdProducto INT NOT NULL,
+    Cantidad INT NOT NULL,
+    IdVenta INT NOT NULL
 );
