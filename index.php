@@ -20,6 +20,7 @@ require_once('controller/productocontroller.php');
 require_once('controller/proveedorcontroller.php');
 require_once('controller/usuariocontroller.php');
 require_once('controller/ventacontroller.php');
+require_once('controller/emailcontroller.php');
 
 if (isset($_SESSION["nivel"])) {
     if ($_SESSION["nivel"] == "Administrador") {

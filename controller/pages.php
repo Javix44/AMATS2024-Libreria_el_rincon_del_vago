@@ -33,6 +33,8 @@ class Pages
                 return "view/admin/inicio.php";
             case "inicio":
                 return "view/admin/inicio.php";
+            case "index":
+                return "view/admin/index.php";
             case "agregarusuario":
                 return "view/admin/form/agregarusuario.php";
             case "agregarproveedores":
@@ -72,6 +74,8 @@ class Pages
                 return "view/cajero/inicio.php";
             case "inicio":
                 return "view/cajero/inicio.php";
+            case "index":
+                return "view/cajero/index.php";
             case "agregarventa":
                 return "view/cajero/form/agregarventa.php";
             case "agregardetalles":

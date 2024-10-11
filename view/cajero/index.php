@@ -1,3 +1,18 @@
+<?php
+if (isset($_POST["notificar_admin"])) {
+    $email_controller = new email_controller();
+    $mensaje = $email_controller->sendStockBajoEmail();
+    // Mostrar una alerta con el mensaje devuelto
+    if (!empty($mensaje)) {
+        echo "<script>alert('$mensaje');</script>";
+        echo "<script>location.href='index';</script>";  // Redirigir a la página principal
+    } else {
+        echo "<script>alert('Error inesperado al enviar el correo');</script>";
+        echo "<script>location.href='index';</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -44,27 +59,81 @@
 
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
-            <?php
-            require_once("menusuperior.php");
-            ?>
+            <?php require_once("menusuperior.php"); ?>
             <!-- contenido -->
             <!-- por el momento no borrar aqui va ir contenido -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
-                    
+
                     $pages = new Pages();
                     require_once($pages->ViewPage());
+
+                    $url = isset($_GET["url"]) ? $_GET["url"] : null;
+                    $url = explode('/', $url);
+                    if ($url[0] == "index") {
+                        $ProductoController = new ProductoController();
+                        $resultados_admin = $ProductoController->Stock_Minimo();
+                    ?>
+                        <div class="container mt-5">
+                            <h2 class="text-center">Registro de Existencias de Productos Bajos</h2>
+                            <table class="table table-striped table-hover table-borderless table-dark align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Cantidad Actual</th>
+                                        <th class="text-center">Stock Mínimo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <?php
+                                    if ($resultados_admin == NULL) {
+                                    ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center">
+                                                <div class="alert alert-info" role="alert">
+                                                    <strong>Existencias de Productos Suficientes</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    } else {
+                                        foreach ($resultados_admin as $fila) {
+                                        ?>
+                                            <tr>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getNombre()) ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getStock()) ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($fila->getUmbral()) ?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                                <tfoot>
+                                    <td colspan="3">
+                                        <form method="POST">
+                                            <div class="text-center">
+                                                <button type="submit" name="notificar_admin" class="btn btn-primary">
+                                                    <i class="mdi mdi-bell-outline"></i> Notificar Administrador
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tfoot>
+                            </table>
+                        </div>
+                    <?php }
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
-                <?php
-                require_once("footer.php");
-                ?>
+                <?php require_once("footer.php"); ?>
             </div>
             <!-- main-panel ends -->
         </div>
+        <!-- main-panel ends -->
+    </div>
     </div>
     <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>

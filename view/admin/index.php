@@ -58,7 +58,7 @@ $Usuario =  $_SESSION["IdUsuario"];
 
                     $url = isset($_GET["url"]) ? $_GET["url"] : null;
                     $url = explode('/', $url);
-                    if ($url[0] == "index.html") {
+                    if ($url[0] == "index") {
                         $ProductoController = new ProductoController();
                         $resultados_admin = $ProductoController->Stock_Minimo();
                     ?>
