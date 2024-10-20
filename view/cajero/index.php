@@ -66,10 +66,8 @@ if (isset($_POST["notificar_admin"])) {
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
-
                     $pages = new Pages();
                     require_once($pages->ViewPage());
-
                     $url = isset($_GET["url"]) ? $_GET["url"] : null;
                     $url = explode('/', $url);
                     if ($url[0] == "index") {

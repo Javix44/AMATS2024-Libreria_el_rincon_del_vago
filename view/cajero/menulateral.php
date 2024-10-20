@@ -1,20 +1,16 @@
 <style>
+    /* Codigo Para evitar que el Nombre se salga del espacio disponible */
     .profile-name h5 {
         white-space: normal;
-        /* Allows text to wrap */
         word-wrap: break-word;
-        /* Breaks long words */
         overflow-wrap: break-word;
-        /* For better support in some browsers */
         max-width: 150px;
-        /* Adjust as needed to fit your design */
     }
 </style>
 <!-- menu izquierdo -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index"><img src="template/assets/images/logo.svg" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index"><img src="template/assets/images/logo-mini.svg" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="index"><img src="<?php echo URL ?>resources/img/logo_principal.jpg" alt="logo" /></a>
     </div>
     <ul class="nav">
         <li class="nav-item profile">

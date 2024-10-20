@@ -2,29 +2,45 @@
 // Controladores
 $VentaController = new VentaController();
 $IdUsuario = $_SESSION["IdUsuario"];
-if (isset($_POST["agregar_venta"])) {
-    // Creamos la variable mensaje y mandamos el objeto a la función 
-    $mensaje = $VentaController->InsertVenta(new Venta(
-        null,
-        $IdUsuario,
-        $_POST["nombre_cliente"],
-        $_POST["correo_cliente"],
-        null // Fecha asignada automáticamente por la BD
-        // El estado predeterminado será "I" (Iniciado)
-    ));
-    // Suponiendo que $mensaje contiene el resultado de la inserción
-    if (!empty($mensaje)) {
+$ventas = $VentaController->ShowVenta($IdUsuario);
+// Verificar si existe una venta activa
+$_SESSION['venta_alert'] = true;
+$ventaActiva = count($ventas) > 0;
+// Verificar si existe una venta activa
+if ($ventaActiva) {
+    // Si ya hay una venta activa, asegurarse de que la alerta se haya mostrado solo una vez
+    if ($_SESSION['venta_alert'] == false) {
+        $mensaje = "Ya existe una venta creada, Finalice la venta actual o elimínela para crear una nueva.";
         echo "<script>alert('$mensaje');</script>";
-        echo "<script>location.href='agregarventa';</script>";
-    } else {
-        echo "<script>alert('Error al crear la Venta');</script>";
-        echo "<script>location.href='agregarventa';</script>";
+        $_SESSION['venta_alert'] = true; // Evitar que se vuelva a mostrar la alerta
+    }
+} else {
+    if (isset($_POST["agregar_venta"])) {
+        $_SESSION['venta_alert'] = false;
+        // Creamos la variable mensaje y mandamos el objeto a la función 
+        $mensaje = $VentaController->InsertVenta(new Venta(
+            null,
+            $IdUsuario,
+            $_POST["nombre_cliente"],
+            $_POST["correo_cliente"],
+            null // Fecha asignada automáticamente por la BD
+        ));
+        // Verificar el resultado de la inserción
+        if (!empty($mensaje)) {
+            echo "<script>alert('$mensaje');</script>";
+            echo "<script>location.href='agregarventa';</script>";
+        } else {
+            echo "<script>alert('Error al crear la Venta');</script>";
+            echo "<script>location.href='agregarventa';</script>";
+        }
     }
 }
-//Logica para eliminar registro
+// Lógica para eliminar registro
 if (isset($_POST["eliminar"])) {
-    $mensaje = $VentaController->DeleteVenta($_POST["id_venta"]);
+    // Reiniciar la variable de alerta al eliminar la venta
+    unset($_SESSION['venta_alert']);
 
+    $mensaje = $VentaController->DeleteVenta($_POST["id_venta"]);
     if (!empty($mensaje)) {
         echo "<script>alert('$mensaje');</script>";
         echo "<script>location.href='agregarventa';</script>";
@@ -34,15 +50,12 @@ if (isset($_POST["eliminar"])) {
     }
 }
 
-//Logica de cambio de pagina
 if (isset($_POST["agregar_detalle"])) {
-    $idVenta = $_POST['id_venta'];
-    $_SESSION['id_venta'] = $idVenta;
-    // Redirigir a la página de detalles de la venta
     echo "<script>location.href='agregardetalles';</script>";
+    $_SESSION['id_venta'] =$_POST["id_venta"];
 }
-
 ?>
+
 <style>
     /* Para truncar el nombre del cliente con puntos suspensivos */
     td.text-center {
@@ -60,29 +73,6 @@ if (isset($_POST["agregar_detalle"])) {
     }
 </style>
 
-<?php
-// Controladores
-$VentaController = new VentaController();
-$IdUsuario = $_SESSION["IdUsuario"];
-
-if (isset($_POST["agregar"])) {
-    // Redirigir a agregardetalles con el id de la venta
-    $idVenta = $_POST['id_venta'];
-    echo "<script>location.href='agregardetalles?id={$idVenta}';</script>";
-}
-
-if (isset($_POST["eliminar"])) {
-    $mensaje = $VentaController->DeleteVenta($_POST["id_venta"]);
-
-    if (!empty($mensaje)) {
-        echo "<script>alert('$mensaje');</script>";
-        echo "<script>location.href='agregarventa';</script>";
-    } else {
-        echo "<script>alert('Error al eliminar la venta');</script>";
-        echo "<script>location.href='agregarventa';</script>";
-    }
-}
-?>
 <div class="page-header">
     <h3 class="page-title">Agregar Venta</h3>
     <nav aria-label="breadcrumb">
@@ -108,7 +98,13 @@ if (isset($_POST["eliminar"])) {
                         <label for="correo_cliente">Correo Cliente</label>
                         <input type="email" class="form-control" name="correo_cliente" placeholder="Ingrese correo del cliente" required>
                     </div>
-                    <button name="agregar_venta" type="submit" class="btn btn-primary mr-2">Agregar</button>
+                    <button name="agregar_venta" type="submit" class="btn btn-primary mr-2"
+                        <?php echo $ventaActiva ? 'disabled' : ''; ?>>
+                        Agregar
+                    </button>
+                    <?php if ($ventaActiva): ?>
+                        <span class="alert-message">Ya existe una venta activa. Finalice o elimínela para agregar otra.</span>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>
@@ -131,7 +127,7 @@ if (isset($_POST["eliminar"])) {
                         </thead>
                         <tbody>
                             <?php
-                            $ventas = $VentaController->ShowVenta();
+
                             if (empty($ventas)) {
                                 echo '<tr><td colspan="3" class="text-center"><strong>Sin Venta Activa</strong></td></tr>';
                             } else {

@@ -44,7 +44,7 @@ class VentaController extends Connection
     }
 
     //funcion para ver venta actual
-    public function ShowVenta()
+    public function ShowVenta($id)
     {
 
         $resultado = array();
@@ -53,7 +53,7 @@ class VentaController extends Connection
          SELECT V.IdVenta,U.nombre AS Nombre_Usuario, V.nombre_cliente
          FROM Venta V 
          JOIN usuario U ON V.IdUsuario = U.IdUsuario
-         where V.estado = 'I'
+         where V.estado = 'I' AND V.IdUsuario = '" . $id . "'
          ";
         $stm = $this->prepareStatement($sql);
         $stm->execute();
@@ -78,10 +78,19 @@ class VentaController extends Connection
         $resultado = array();
 
         $sql = "
-          SELECT V.IdVenta,U.nombre AS Nombre_Usuario, V.nombre_cliente, V.FechaRegistro
-          FROM Venta V 
-          JOIN usuario U ON V.IdUsuario = U.IdUsuario
-          where V.estado = 'T'
+          SELECT 
+            V.IdVenta,
+            U.nombre AS Nombre_Usuario, 
+            V.nombre_cliente, 
+            SUM(D.Cantidad * P.precioventa) AS Total_Venta,
+            V.FechaRegistro
+            FROM Venta V
+            JOIN usuario U ON V.IdUsuario = U.IdUsuario
+            JOIN detalle_venta D ON V.IdVenta = D.IdVenta
+            JOIN producto P ON P.IdProducto = D.IdProducto
+            WHERE V.estado = 'T'
+            GROUP BY V.IdVenta, U.nombre, V.nombre_cliente, V.FechaRegistro;
+
           ";
         $stm = $this->prepareStatement($sql);
         $stm->execute();
@@ -93,7 +102,7 @@ class VentaController extends Connection
                 $fila['IdVenta'],
                 $fila['Nombre_Usuario'],
                 $fila['nombre_cliente'],
-                null,
+                $fila['Total_Venta'],
                 $fila['FechaRegistro'],
                 null
             );
@@ -181,14 +190,23 @@ class VentaController extends Connection
 
 
     //funcion para ver venta actual
-    public function ShowDetalleVenta()
+    public function ShowDetalleVenta($id)
     {
 
         $resultado = array();
 
         $sql = "
-                SELECT V.Id_detalle_venta, P.nombre, V.cantidad  FROM detalle_venta V
-                INNER JOIN Producto P ON P.IdProducto = V.IdProducto
+                SELECT 
+                    V.Id_Detalle_Venta,
+                    P.nombre, 
+                    V.cantidad, 
+                    P.precioventa, 
+                    (V.cantidad * P.precioventa) AS subtotal
+                FROM 
+                    detalle_venta V
+                INNER JOIN 
+                    Producto P ON P.IdProducto = V.IdProducto
+                WHERE V.idventa = '" . $id . "'
              ";
         $stm = $this->prepareStatement($sql);
         $stm->execute();
@@ -196,10 +214,12 @@ class VentaController extends Connection
         $rs = $stm->get_result();
 
         while ($fila = $rs->fetch_assoc()) {
-            $resultado[] = new Categoria(
-                $fila['Id_detalle_venta'],
+            $resultado[] = new Venta(
+                $fila['Id_Detalle_Venta'],
                 $fila['nombre'],
-                $fila['cantidad']
+                $fila['cantidad'],
+                $fila['precioventa'],
+                $fila['subtotal']
             );
         }
         return $resultado;

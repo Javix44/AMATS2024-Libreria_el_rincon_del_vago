@@ -21,6 +21,9 @@ require_once('controller/proveedorcontroller.php');
 require_once('controller/usuariocontroller.php');
 require_once('controller/ventacontroller.php');
 require_once('controller/emailcontroller.php');
+require_once('controller/pdfcontroller.php');
+
+// Control de Acceso y Redirección
 
 if (isset($_SESSION["nivel"])) {
     if ($_SESSION["nivel"] == "Administrador") {
@@ -30,4 +33,12 @@ if (isset($_SESSION["nivel"])) {
     }
 } else {
     require_once("view/login.php");
+}
+
+
+//Vistas
+$info = isset($_GET["url"]) ? $_GET["url"] : null;
+$info = explode("/", $info);
+if ($info[0] == 'Imprimir_Factura') {
+    require_once('ZImpresiones/Plantilla_Impresion_Factura.php');
 }

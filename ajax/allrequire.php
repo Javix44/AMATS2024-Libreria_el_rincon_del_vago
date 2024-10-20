@@ -9,17 +9,13 @@ require_once('../model/usuario.php');
 require_once('../model/venta.php');
 
 //controladores
-require_once('../controller/categoria../controller.php');
-require_once('../controller/compra../controller.php');
+require_once('../controller/categoriacontroller.php');
+require_once('../controller/compracontroller.php');
 require_once('../controller/connection.php');
 require_once('../controller/pages.php');
-require_once('../controller/producto../controller.php');
-require_once('../controller/proveedor../controller.php');
-require_once('../controller/usuario../controller.php');
-require_once('../controller/venta../controller.php');
-
-//librerias
-require_once('../library/TCPDF-main/tcpdf.php');
-require_once('../library/PHPMailer/vendor/autoload.php');
+require_once('../controller/productocontroller.php');
+require_once('../controller/proveedorcontroller.php');
+require_once('../controller/usuariocontroller.php');
+require_once('../controller/ventacontroller.php');
 
 ?>

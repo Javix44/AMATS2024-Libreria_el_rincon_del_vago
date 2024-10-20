@@ -4,6 +4,7 @@ $id_venta = $_SESSION['id_venta'];
 // Controladores
 $VentaController = new VentaController();
 $productoController = new ProductoController();
+$email_controller = new email_controller();
 
 if (isset($_POST["agregar_detalleventa"])) {
     // Creamos la variable mensaje y mandamos el objeto a la función 
@@ -36,6 +37,8 @@ if (isset($_POST["eliminar"])) {
 // Logica para finalizar detalles y registrar venta
 if (isset($_POST["finalizar_detalles"])) {
     $mensaje = $VentaController->FinalizarDetallesVenta($id_venta);
+    $mensaje2 = $email_controller->sendComprobanteElectronicoEmail($id_venta);
+    echo "<script>alert('$mensaje2');</script>";
     if (!empty($mensaje)) {
         echo "<script>alert('$mensaje');</script>";
         echo "<script>location.href='agregarventa';</script>";
@@ -43,6 +46,7 @@ if (isset($_POST["finalizar_detalles"])) {
         echo "<script>alert('Error al eliminar la venta');</script>";
         echo "<script>location.href='agregardetalles';</script>";
     }
+
 }
 
 ?>
@@ -147,18 +151,18 @@ if (isset($_POST["finalizar_detalles"])) {
                     </thead>
                     <tbody>
                         <?php
-                        $ventas = $VentaController->ShowDetalleVenta();
+                        $ventas = $VentaController->ShowDetalleVenta($id_venta);
                         if (empty($ventas)) {
                             echo '<tr><td colspan="3" class="text-center"><strong>Sin Detalles...</strong></td></tr>';
                         } else {
                             foreach ($ventas as $fila_Ingreso) {
-                                //Use los getters del modelo Categoria porque era mas facil usar dicho modelo con 3 atributos que mandar 8 null por otro modelo
+                                //Use los getters del modelo Venta porque era mas facil usar dicho modelo con 4 atributos que mandar 8 null por otro modelo
                                 echo "<tr>
-                                    <td class='text-center'>{$fila_Ingreso->getNombre()}</td>
-                                    <td class='text-center'>{$fila_Ingreso->getDescripcion()}</td>
+                                    <td class='text-center'>{$fila_Ingreso->getUsuario()}</td>
+                                    <td class='text-center'>{$fila_Ingreso->getNombreCliente()}</td>
                                     <td class='text-center'>
                                         <form method='post'>
-                                            <input type='hidden' name='id_detalle_venta' value='{$fila_Ingreso->getIdCategoria()}'>
+                                            <input type='hidden' name='id_detalle_venta' value='{$fila_Ingreso->getIdVenta()}'>
                                             <button type='submit' name='eliminar' class='btn btn-outline-danger btn-icon-text'>
                                                 <i class='mdi mdi-delete-forever'></i> Eliminar
                                             </button>

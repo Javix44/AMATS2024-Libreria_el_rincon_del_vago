@@ -31,8 +31,8 @@ class Pages
         switch ($url[0]) {
             case "":
                 return "view/admin/inicio.php";
-            case "inicio":
-                return "view/admin/inicio.php";
+            case "index.php":
+                return "view/admin/index.php";
             case "index":
                 return "view/admin/index.php";
             case "agregarusuario":
@@ -72,8 +72,8 @@ class Pages
         switch ($url[0]) {
             case "":
                 return "view/cajero/inicio.php";
-            case "inicio":
-                return "view/cajero/inicio.php";
+            case "index.php":
+                return "view/cajero/index.php";
             case "index":
                 return "view/cajero/index.php";
             case "agregarventa":
