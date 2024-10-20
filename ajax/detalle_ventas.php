@@ -1,5 +1,5 @@
 <?php
-require_once 'allrequire.php'; // Asegúrate de incluir tu controlador
+require_once 'allrequire.php'; // Incluye todos los controladores
 
 if (isset($_POST['idVenta'])) {
     $idVenta = $_POST['idVenta'];
@@ -26,7 +26,7 @@ if (isset($_POST['idVenta'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="Imprimir_Factura/" target="_blank" class="btn btn-success">
+    <a href="Imprimir_Factura/<?=$idVenta?>" target="_blank" class="btn btn-success">
         Generar factura PDF <i class="fa-solid fa-file-pdf"></i>
     </a>
 <?php

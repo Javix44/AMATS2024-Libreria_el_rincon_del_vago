@@ -41,18 +41,31 @@ $Usuario =  $_SESSION["IdUsuario"];
 <body>
     <div class="container-scroller">
         <!-- menu izquierdo -->
-        <?php require_once("menulateral.php"); ?>
-
+        <?php
+        $url = isset($_GET["url"]) ? $_GET["url"] : null;
+        $url = explode('/', $url);
+        if ($url[0] == "Imprimir_Factura") {
+        } else {
+            require_once("menulateral.php");
+        }
+        ?>
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
-            <?php require_once("menusuperior.php"); ?>
+            <?php
+            $url = isset($_GET["url"]) ? $_GET["url"] : null;
+            $url = explode('/', $url);
+            if ($url[0] == "Imprimir_Factura") {
+            } else {
+                require_once("menusuperior.php");
+            }
+            ?>
             <!-- contenido -->
             <!-- por el momento no borrar aqui va ir contenido -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
-                    
+
                     $pages = new Pages();
                     require_once($pages->ViewPage());
 
@@ -103,7 +116,14 @@ $Usuario =  $_SESSION["IdUsuario"];
                     ?>
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
-                <?php require_once("footer.php"); ?>
+                <?php
+                $url = isset($_GET["url"]) ? $_GET["url"] : null;
+                $url = explode('/', $url);
+                if ($url[0] == "Imprimir_Factura") {
+                } else {
+                    require_once("footer.php");
+                }
+                ?>
             </div>
             <!-- main-panel ends -->
         </div>
@@ -137,4 +157,5 @@ $Usuario =  $_SESSION["IdUsuario"];
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
 </body>
+
 </html>

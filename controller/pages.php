@@ -1,5 +1,4 @@
 <?php
-
 class Pages
 {
 
@@ -9,9 +8,6 @@ class Pages
         $pagina = "";
         $url = isset($_GET["url"]) ? $_GET["url"] : null;
         $url = explode('/', $url);
-
-        //por el momneto cambien el nombre de la seccion usuario por login
-        //necesito seccion usuario se guarde todos los datos de la base de datos, nombre, id, correo, etc.
         if (isset($_SESSION["login"])) {
             if ($_SESSION["nivel"] == "Administrador") {
                 $pagina = $this->CargarVistaAdmin($url);
@@ -21,7 +17,6 @@ class Pages
         } else {
             require_once("view/login.php");
         }
-
         return $pagina;
     }
 
@@ -61,6 +56,8 @@ class Pages
                 return "view/admin/consultas/listaingresos.php";
             case "listaventa":
                 return "view/cajero/consultas/listaventa.php";
+            case "Imprimir_Factura":
+                return "ZImpresiones/Plantilla_Impresion_Factura.php";
             default:
                 return "view/e404.php";
         }
@@ -90,6 +87,8 @@ class Pages
                 return "view/admin/consultas/listaingresos.php";
             case "listaventa":
                 return "view/cajero/consultas/listaventa.php";
+            case "Imprimir_Factura":
+                return "ZImpresiones/Plantilla_Impresion_Factura.php";
             default:
                 return "view/e404.php";
         }
