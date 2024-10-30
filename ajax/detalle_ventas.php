@@ -6,7 +6,7 @@ if (isset($_POST['idVenta'])) {
     $VentaController = new VentaController();
     $detallesVenta = $VentaController->ShowDetalleVenta($idVenta);
 ?>
-    <table class="table">
+    <table class="table" style="color: white;">
         <thead>
             <tr>
                 <th class="text-center">Nombre Producto</th>

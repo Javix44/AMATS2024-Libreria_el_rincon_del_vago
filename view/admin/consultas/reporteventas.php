@@ -6,8 +6,7 @@ $listaProducto = $VentaController->ShowEntradasSalidas();
     <h3 class="page-title">Listado de Ventas</h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Ver Registros</li>
-            <li class="breadcrumb-item"><a href="agregarventa">Agregar Venta</a></li>
+            <li class="breadcrumb-item"><a href="agregarventa">Listado de Ventas</a></li>
         </ol>
     </nav>
 </div>
