@@ -90,7 +90,7 @@ class Pages
             case "listaingresos":
                 return "view/admin/consultas/listaingresos.php";
             case "listaventa":
-                return "view/admin/consultas/listaventa.php";
+                return "view/cajero/consultas/listaventa.php";
             case "ReporteVe":
                 return "view/admin/consultas/reporteventas.php";
             case "ReportePro":

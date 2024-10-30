@@ -72,7 +72,7 @@ class VentaController extends Connection
         return $resultado;
     }
     //funcion para ver venta completada
-    public function ShowVentaCompletada()
+    public function ShowVentaCompletada($id)
     {
 
         $resultado = array();
@@ -88,7 +88,7 @@ class VentaController extends Connection
             JOIN usuario U ON V.IdUsuario = U.IdUsuario
             JOIN detalle_venta D ON V.IdVenta = D.IdVenta
             JOIN producto P ON P.IdProducto = D.IdProducto
-            WHERE V.estado = 'T'
+            WHERE V.estado = 'T' AND V.Idusuario = '" . $id . "'
             GROUP BY V.IdVenta, U.nombre, V.nombre_cliente, V.FechaRegistro;
 
           ";
@@ -288,5 +288,77 @@ class VentaController extends Connection
         }
         $stmt->close();
         return $mensaje;
+    }
+
+    //funcion para ver venta actual
+    public function ShowEntradasSalidas()
+    {
+
+        $resultado = array();
+
+        $sql = "
+                    SELECT u.Nombre AS NombreUsuario, C.FechaRegistro, p.Nombre AS NobreProducto, c.Cantidad, 'ENTRADA' AS Movimiento FROM compra C
+                    INNER JOIN usuario u ON u.IdUsuario = C.IdUsuario
+                    INNER JOIN producto p ON C.IdProducto= p.IdProducto
+                    UNION 
+                    SELECT u.Nombre AS NombreUsuario, vv.FechaRegistro, p.Nombre AS NobreProducto,v.Cantidad ,'SALIDA' AS Movimiento FROM detalle_venta V
+                    INNER JOIN venta vv ON v.Idventa= vv.IdVenta
+                    INNER JOIN usuario u ON u.IdUsuario =vv.IdUsuario
+                    INNER JOIN producto p ON v.IdProducto= p.IdProducto
+                 ";
+        $stm = $this->prepareStatement($sql);
+        $stm->execute();
+
+        $rs = $stm->get_result();
+
+        while ($fila = $rs->fetch_assoc()) {
+            $resultado[] = new Venta(
+                $fila['NombreUsuario'],
+                $fila['FechaRegistro'],
+                $fila['NobreProducto'],
+                $fila['Cantidad'],
+                $fila['Movimiento']
+            );
+        }
+        return $resultado;
+    }
+
+    //funcion para ver venta completada
+    public function ShowTodasVentaCompletada()
+    {
+
+        $resultado = array();
+
+        $sql = "
+          SELECT 
+            V.IdVenta,
+            U.nombre AS Nombre_Usuario, 
+            V.nombre_cliente, 
+            SUM(D.Cantidad * P.precioventa) AS Total_Venta,
+            V.FechaRegistro
+            FROM Venta V
+            JOIN usuario U ON V.IdUsuario = U.IdUsuario
+            JOIN detalle_venta D ON V.IdVenta = D.IdVenta
+            JOIN producto P ON P.IdProducto = D.IdProducto
+            WHERE V.estado = 'T'
+            GROUP BY V.IdVenta, U.nombre, V.nombre_cliente, V.FechaRegistro;
+
+          ";
+        $stm = $this->prepareStatement($sql);
+        $stm->execute();
+
+        $rs = $stm->get_result();
+
+        while ($fila = $rs->fetch_assoc()) {
+            $resultado[] = new Venta(
+                $fila['IdVenta'],
+                $fila['Nombre_Usuario'],
+                $fila['nombre_cliente'],
+                $fila['Total_Venta'],
+                $fila['FechaRegistro'],
+                null
+            );
+        }
+        return $resultado;
     }
 }

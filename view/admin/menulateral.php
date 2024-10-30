@@ -144,7 +144,7 @@
             <div class="collapse" id="ui-basic3">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="ReporteVe">Reporte de Ventas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="ReportePro">Reporte Movimiento de Productos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="ReportePro">Movimiento de Productos</a></li>
 
                 </ul>
             </div>

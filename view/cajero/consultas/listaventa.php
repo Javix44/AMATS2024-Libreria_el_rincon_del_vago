@@ -1,4 +1,5 @@
 <?php
+$Usuario = $_SESSION["IdUsuario"];
 $VentaController = new VentaController();
 ?>
 
@@ -26,14 +27,14 @@ $VentaController = new VentaController();
                     </thead>
                     <tbody class='table-group-divider'>
                         <?php
-                        if ($VentaController->ShowVentaCompletada() == NULL) {
+                        if ($VentaController->ShowVentaCompletada($Usuario) == NULL) {
                         ?>
                             <div class='alert alert-primary text-center' role='alert'>
                                 <strong>Sin datos que mostrar</strong>
                             </div>
-                        <?php
+                            <?php
                         } else {
-                            foreach ($VentaController->ShowVentaCompletada() as $fila_Venta) {
+                            foreach ($VentaController->ShowVentaCompletada($Usuario) as $fila_Venta) {
                                 // Serializamos los detalles de la venta en un formato JSON
                             ?>
                                 <tr>
@@ -67,9 +68,9 @@ $VentaController = new VentaController();
                 </button>
             </div>
             <div class="modal-body">
-              <div id="detalles-body">
+                <div id="detalles-body">
 
-              </div>
+                </div>
             </div>
         </div>
     </div>
@@ -86,22 +87,23 @@ $VentaController = new VentaController();
     });
 
     function verDetalles(idVenta) {
-    $.ajax({
-        url: 'ajax/detalle_ventas.php', // Ruta a tu archivo AJAX
-        type: 'POST',
-        data: { idVenta: idVenta },
-        success: function(html) {
-            // Llenar el contenido del modal con el HTML devuelto
-            var detallesBody = document.getElementById('detalles-body');
-            detallesBody.innerHTML = html; // Cargar el HTML en el modal
+        $.ajax({
+            url: 'ajax/detalle_ventas.php', // Ruta a tu archivo AJAX
+            type: 'POST',
+            data: {
+                idVenta: idVenta
+            },
+            success: function(html) {
+                // Llenar el contenido del modal con el HTML devuelto
+                var detallesBody = document.getElementById('detalles-body');
+                detallesBody.innerHTML = html; // Cargar el HTML en el modal
 
-            // Mostrar el modal
-            $('#modalSeleccion').modal('show');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
-        }
-    });
-}
-
+                // Mostrar el modal
+                $('#modalSeleccion').modal('show');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+            }
+        });
+    }
 </script>
