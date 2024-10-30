@@ -16,7 +16,7 @@ $listaProducto = $VentaController->ShowEntradasSalidas();
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <table class='table' id='Mostrar_Ve' style='width: 100%; color: white;'>
+                <table class='table' id='Mostrar_Ventas' style='width: 100%; color: white;'>
                     <thead>
                         <th class="text-center">Encargado</th>
                         <th class="text-center">Cliente</th>
@@ -34,6 +34,7 @@ $listaProducto = $VentaController->ShowEntradasSalidas();
                             <?php
                         } else {
                             foreach ($VentaController->ShowTodasVentaCompletada() as $fila_Venta) {
+                                // Serializamos los detalles de la venta en un formato JSON
                             ?>
                                 <tr>
                                     <td class='text-center'><?= $fila_Venta->getUsuario() ?></td>
@@ -41,7 +42,7 @@ $listaProducto = $VentaController->ShowEntradasSalidas();
                                     <td class='text-center'><?= date('Y-m-d', strtotime($fila_Venta->getEstado())) ?></td>
                                     <td class='text-center'><?= $fila_Venta->getCorreoCliente() ?></td>
                                     <td class='text-center'>
-                                        <button class="btn btn-primary" onclick="verDetalles(<?= $fila_Venta->getIdVenta() ?>)">Generar Reporte</button>
+                                        <button class="btn btn-primary" onclick="verDetalles(<?= $fila_Venta->getIdVenta() ?>)">Ver Detalles</button>
                                     </td>
                                 </tr>
                         <?php
@@ -55,13 +56,53 @@ $listaProducto = $VentaController->ShowEntradasSalidas();
     </div>
 </div>
 
+<!-- Modal para selección de producto -->
+<div class="modal fade" id="modalSeleccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de la Venta</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="detalles-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#Mostrar_Ve').DataTable({
+        $('#Mostrar_Ventas').DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             }
         });
     });
+
+    function verDetalles(idVenta) {
+        $.ajax({
+            url: 'ajax/detalle_ventas.php', // Ruta a tu archivo AJAX
+            type: 'POST',
+            data: {
+                idVenta: idVenta
+            },
+            success: function(html) {
+                // Llenar el contenido del modal con el HTML devuelto
+                var detallesBody = document.getElementById('detalles-body');
+                detallesBody.innerHTML = html; // Cargar el HTML en el modal
+
+                // Mostrar el modal
+                $('#modalSeleccion').modal('show');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+            }
+        });
+    }
 </script>
