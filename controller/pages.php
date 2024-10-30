@@ -6,7 +6,7 @@ class Pages
     public function ViewPage()
     {
         $pagina = "";
-        $url = isset($_GET["url"]) ? $_GET["url"] : null;
+        $url = isset($_GET["url"]) ? $_GET["url"] : ""; 
         $url = explode('/', $url);
         if (isset($_SESSION["login"])) {
             if ($_SESSION["nivel"] == "Administrador") {

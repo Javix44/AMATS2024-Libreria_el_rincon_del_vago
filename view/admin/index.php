@@ -1,5 +1,5 @@
 <?php
-$Usuario =  $_SESSION["IdUsuario"];
+$Usuario = $_SESSION["IdUsuario"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -42,7 +42,7 @@ $Usuario =  $_SESSION["IdUsuario"];
     <div class="container-scroller">
         <!-- menu izquierdo -->
         <?php
-        $url = isset($_GET["url"]) ? $_GET["url"] : null;
+        $url = isset($_GET["url"]) ? $_GET["url"] : ""; // Cambiado de null a cadena vacía
         $url = explode('/', $url);
         if ($url[0] == "Imprimir_Factura") {
         } else {
@@ -52,7 +52,7 @@ $Usuario =  $_SESSION["IdUsuario"];
         <div class="container-fluid page-body-wrapper">
             <!-- barra arriba -->
             <?php
-            $url = isset($_GET["url"]) ? $_GET["url"] : null;
+            $url = isset($_GET["url"]) ? $_GET["url"] : ""; // Cambiado de null a cadena vacía
             $url = explode('/', $url);
             if ($url[0] == "Imprimir_Factura") {
             } else {
@@ -65,12 +65,11 @@ $Usuario =  $_SESSION["IdUsuario"];
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
-
                     $pages = new Pages();
                     require_once($pages->ViewPage());
                     $ProductoController = new ProductoController();
 
-                    $url = isset($_GET["url"]) ? $_GET["url"] : null;
+                    $url = isset($_GET["url"]) ? $_GET["url"] : ""; // Cambiado de null a cadena vacía
                     $url = explode('/', $url);
                     if ($url[0] == "index" || $url[0] == "index.php" || $url[0] == "") {
                         $resultados_admin = $ProductoController->Stock_Minimo();
@@ -120,7 +119,7 @@ $Usuario =  $_SESSION["IdUsuario"];
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
                 <?php
-                $url = isset($_GET["url"]) ? $_GET["url"] : null;
+                $url = isset($_GET["url"]) ? $_GET["url"] : ""; // Cambiado de null a cadena vacía
                 $url = explode('/', $url);
                 if ($url[0] == "Imprimir_Factura") {
                 } else {
@@ -131,7 +130,6 @@ $Usuario =  $_SESSION["IdUsuario"];
             <!-- main-panel ends -->
         </div>
     </div>
-
 
     <!-- Otros scripts de vendor o dependencias -->
     <script src="template/assets/vendors/js/vendor.bundle.base.js"></script>
