@@ -25,7 +25,7 @@ class Pages
     {
         switch ($url[0]) {
             case "":
-                return "view/admin/inicio.php";
+                return "view/admin/index.php";
             case "index.php":
                 return "view/admin/index.php";
             case "index":
@@ -56,6 +56,10 @@ class Pages
                 return "view/admin/consultas/listaingresos.php";
             case "listaventa":
                 return "view/cajero/consultas/listaventa.php";
+            case "ReporteVe":
+                return "view/admin/consultas/reporteventas.php";
+            case "ReportePro":
+                return "view/admin/consultas/reportemovimientos.php";
             case "Imprimir_Factura":
                 return "ZImpresiones/Plantilla_Impresion_Factura.php";
             default:
@@ -68,7 +72,7 @@ class Pages
     {
         switch ($url[0]) {
             case "":
-                return "view/cajero/inicio.php";
+                return "view/cajero/index.php";
             case "index.php":
                 return "view/cajero/index.php";
             case "index":
@@ -86,7 +90,11 @@ class Pages
             case "listaingresos":
                 return "view/admin/consultas/listaingresos.php";
             case "listaventa":
-                return "view/cajero/consultas/listaventa.php";
+                return "view/admin/consultas/listaventa.php";
+            case "ReporteVe":
+                return "view/admin/consultas/reporteventas.php";
+            case "ReportePro":
+                return "view/admin/consultas/reportemovimientos.php";
             case "Imprimir_Factura":
                 return "ZImpresiones/Plantilla_Impresion_Factura.php";
             default:

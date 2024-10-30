@@ -68,52 +68,55 @@ $Usuario =  $_SESSION["IdUsuario"];
 
                     $pages = new Pages();
                     require_once($pages->ViewPage());
+                    $ProductoController = new ProductoController();
 
                     $url = isset($_GET["url"]) ? $_GET["url"] : null;
                     $url = explode('/', $url);
-                    if ($url[0] == "index") {
-                        $ProductoController = new ProductoController();
+                    if ($url[0] == "index" || $url[0] == "index.php" || $url[0] == "") {
                         $resultados_admin = $ProductoController->Stock_Minimo();
                     ?>
                         <div class="container mt-5">
                             <h2 class="text-center">Registro de Existencias de Productos Bajos</h2>
-                            <table class="table table-striped table-hover table-borderless table-dark align-middle">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">Cantidad Actual</th>
-                                        <th class="text-center">Stock Mínimo</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <?php
-                                    if ($resultados_admin == NULL) {
-                                    ?>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-borderless table-dark align-middle">
+                                    <thead>
                                         <tr>
-                                            <td colspan="4" class="text-center">
-                                                <div class="alert alert-info" role="alert">
-                                                    <strong>Existencias de Productos Suficientes</strong>
-                                                </div>
-                                            </td>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Cantidad Actual</th>
+                                            <th class="text-center">Stock Mínimo</th>
                                         </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
                                         <?php
-                                    } else {
-                                        foreach ($resultados_admin as $fila) {
+                                        if ($resultados_admin == NULL) {
                                         ?>
                                             <tr>
-                                                <td class="text-center"><?= htmlspecialchars($fila->getNombre()) ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($fila->getStock()) ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($fila->getUmbral()) ?></td>
+                                                <td colspan="4" class="text-center">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <strong>Existencias de Productos Suficientes</strong>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                    <?php
+                                            <?php
+                                        } else {
+                                            foreach ($resultados_admin as $fila) {
+                                            ?>
+                                                <tr>
+                                                    <td class="text-center"><?= htmlspecialchars($fila->getNombre()) ?></td>
+                                                    <td class="text-center"><?= htmlspecialchars($fila->getStock()) ?></td>
+                                                    <td class="text-center"><?= htmlspecialchars($fila->getUmbral()) ?></td>
+                                                </tr>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     <?php }
                     ?>
+
                 </div>
                 <!-- Aqui tenemos el pie de pagina -->
                 <?php

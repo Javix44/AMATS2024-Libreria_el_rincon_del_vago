@@ -17,7 +17,7 @@
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="template/assets/images/faces/face15.jpg" alt="">
+                        <img class="img-xs rounded-circle" src="<?php echo URL ?>resources/img/ic_cajero.png" alt="">
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
@@ -38,14 +38,6 @@
         </li>
         <li class="nav-item nav-category">
             <span class="nav-link">Bienvenido</span>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
-                <span class="menu-icon">
-                    <i class="mdi mdi-speedometer"></i>
-                </span>
-                <span class="menu-title">Dashboard</span>
-            </a>
         </li>
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
@@ -96,7 +88,7 @@
             </div>
         </li>
 
-        <!--Menu de productos-->
+        <!--Menu de Reportes-->
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
@@ -107,13 +99,10 @@
             </a>
             <div class="collapse" id="ui-basic3">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Reporte de Ventas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Reporte Ingreso Productos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="ReporteVe">Reporte de Ventas</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="ReportePro">Reporte Movimiento de Productos</a></li>
 
                 </ul>
             </div>
         </li>
-
-
-
 </nav>

@@ -76,15 +76,16 @@ if (isset($_POST["notificar_admin"])) {
                 <div class="content-wrapper">
                     <!-- dentro de aqui va ir llamdo de cada pagina -->
                     <?php
+                    $ProductoController = new ProductoController();
+
                     $pages = new Pages();
                     require_once($pages->ViewPage());
                     $url = isset($_GET["url"]) ? $_GET["url"] : null;
                     $url = explode('/', $url);
-                    if ($url[0] == "index") {
-                        $ProductoController = new ProductoController();
+                    if ($url[0] == "index" || $url[0] == "index.php" || $url[0] == "") {
                         $resultados_admin = $ProductoController->Stock_Minimo();
                     ?>
-                        <div class="container mt-5">
+                        <div class="container">
                             <h2 class="text-center">Registro de Existencias de Productos Bajos</h2>
                             <table class="table table-striped table-hover table-borderless table-dark align-middle">
                                 <thead>
@@ -132,18 +133,67 @@ if (isset($_POST["notificar_admin"])) {
                                 </tfoot>
                             </table>
                         </div>
-                    <?php }
-                    ?>
+                        <?php
+                        $listaProducto = $ProductoController->ShowProductos();
+                        ?>
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-lg-12 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-center h2">Consulta de Listado de productos</h4>
+                                            <div class="table-responsive">
+                                                <table id="table" class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Categoria</th>
+                                                            <th>Stock</th>
+                                                            <th>Precio Venta</th>
+                                                            <th>Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        foreach ($listaProducto as $pro) {
+                                                            $verEstado = $pro->getEstado() == 1 ? "Activo" : "Inactivo";
+                                                            $descripcionCorta = substr($pro->getDescripcion(), 0, 18) . (strlen($pro->getDescripcion()) > 18 ? "..." : "");
+
+                                                            echo "
+                                                        <tr>
+                                                        <td>" . $pro->getNombre() . "</td>
+                                                        <td title='" . htmlspecialchars($pro->getDescripcion(), ENT_QUOTES) . "'>" . $descripcionCorta . "</td>
+                                                        <td>" . $pro->getCategoria()->getNombre() . "</td>
+                                                        <td>" . $pro->getStock() . "</td>
+                                                        <td>" . $pro->getPrecioVenta() . "</td>
+                                                        <td>" . $verEstado . "</td>
+                                                        </tr>";
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <!-- Aqui tenemos el pie de pagina -->
-                <?php
-                $url = isset($_GET["url"]) ? $_GET["url"] : null;
-                $url = explode('/', $url);
-                if ($url[0] == "Imprimir_Factura") {
-                } else {
-                    require_once("footer.php");
-                }
-                ?>
+            <?php
+                    }
+            ?>
+
+            <!-- Aqui tenemos el pie de pagina -->
+            <?php
+            $url = isset($_GET["url"]) ? $_GET["url"] : null;
+            $url = explode('/', $url);
+            if ($url[0] == "Imprimir_Factura") {
+            } else {
+                require_once("footer.php");
+            }
+            ?>
+
             </div>
             <!-- main-panel ends -->
         </div>
@@ -176,6 +226,18 @@ if (isset($_POST["notificar_admin"])) {
     <script src="template/assets/js/file-upload.js"></script>
     <script src="template/assets/js/typeahead.js"></script>
     <script src="template/assets/js/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                },
+                "initComplete": function() {
+                    $('.paginate_button').addClass('btn btn-dark p-0');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

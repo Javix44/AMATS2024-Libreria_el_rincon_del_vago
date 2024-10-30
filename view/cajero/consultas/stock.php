@@ -63,7 +63,7 @@ $listaProducto = $productoController->ShowProductos();
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Lista de productos</h4>
-                <p class="card-description"> Información de usuarios</p>
+                <p class="card-description"> Información de Productos</p>
                 <div class="table-responsive">
                     <table id="table" class="table table-hover">
                         <thead>
