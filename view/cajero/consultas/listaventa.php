@@ -17,7 +17,7 @@ $VentaController = new VentaController();
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <table class='table' id='Mostrar_Ventas' style='width: 100%;'>
+                <table class='table' id='Mostrar_Ventas' style='width: 100%; color: white;'>
                     <thead>
                         <th class="text-center">Encargado</th>
                         <th class="text-center">Cliente</th>

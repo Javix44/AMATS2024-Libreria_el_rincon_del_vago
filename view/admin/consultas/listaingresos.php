@@ -15,7 +15,7 @@ $CompraController = new CompraController();
         <div class="card">
             <div class="card-body">
 
-                <table class='table' id='Mostrar_Ingresos' style='width: 100%;'>
+                <table class='table' id='Mostrar_Ingresos' style='width: 100%;color: white;'>
                     <thead>
                         <th class="text-center">Encargado</th>
                         <th class="text-center">Fecha de Ingreso</th>

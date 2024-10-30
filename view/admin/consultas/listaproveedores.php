@@ -56,7 +56,7 @@ $listaProveedor = $proveedorController->ShowProveedores();
                 <h4 class="card-title">Lista de usuarios</h4>
                 <p class="card-description"> Información de usuarios</p>
                 <div class="table-responsive">
-                    <table id="table" class="table table-hover">
+                    <table id="table" class="table table-hover" style="color: white;">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
